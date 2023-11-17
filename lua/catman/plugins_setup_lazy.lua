@@ -15,4 +15,8 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 -- 插件列表
-require('lazy').setup("plugins")
+require('lazy').setup({
+    spec = {
+        { import = "catman.plugins" }
+    }
+})

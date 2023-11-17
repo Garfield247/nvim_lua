@@ -15,23 +15,6 @@ return {
 	-- 图标
 	"kyazdani42/nvim-web-devicons",
 	-- 文件浏览器
-	-- nvim-tree
-	{
-		"kyazdani42/nvim-tree.lua",
-		dependencies = "kyazdani42/nvim-web-devicons",
-	},
-	-- bufferline
-	{
-		"akinsho/bufferline.nvim",
-		dependencies = { "kyazdani42/nvim-web-devicons", "moll/vim-bbye" },
-	},
-
-	-- 状态栏
-	-- lualine
-	{
-		"nvim-lualine/lualine.nvim",
-		dependencies = { "kyazdani42/nvim-web-devicons" },
-	},
 
 	-- FZF支持
 	{ "nvim-telescope/telescope-fzf-native.nvim", build =  "make" }, -- dependency for better sorting performance
