@@ -4,7 +4,7 @@ return {
 	version = "*",
 	opts = {
 		options = {
-			mode = "tabs",
+			-- mode = "tabs",
 			separator_style = "slant",
 			diagnostics = "nvim_lsp",
 			-- 左侧让出 nvim-tree 的位置

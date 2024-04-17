@@ -49,3 +49,7 @@ opt.iskeyword:append("-") -- consider string-string as whole word--vi
 
 opt.showcmd = true
 opt.wildmenu = true
+
+-- set global python env
+vim.g.python3_host_prog = "/Users/catman/.pyenv/shims/python"
+-- vim.env.PYENV_VERSION = vim.fn.system("pyenv version"):match("(%S+)%s+%(.-%)")

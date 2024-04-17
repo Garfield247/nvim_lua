@@ -42,10 +42,13 @@ return {
 				}), -- js/ts formatter
 				formatting.stylua, -- lua formatter
 				formatting.isort,
+				-- diagnostics.pylint.with({ prefer_local = ".venv/bin" }),
+				diagnostics.pylint,
 				formatting.black,
-				-- diagnostics.pylint,
 				formatting.goimports,
 				formatting.gofmt,
+				diagnostics.mypy,
+				diagnostics.ruff,
 				diagnostics.eslint_d.with({ -- js/ts linter
 					condition = function(utils)
 						return utils.root_has_file({ ".eslintrc.js", ".eslintrc.cjs" }) -- only enable if root has .eslintrc.js or .eslintrc.cjs
