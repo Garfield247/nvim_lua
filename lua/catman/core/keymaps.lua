@@ -7,7 +7,7 @@ local keymap = vim.keymap
 ---------------------
 
 -- keymap.set({mode}, {lhs}, {rhs}, {opts})
-keymap.set("n", "s", "<nop>") --save current file
+vim.api.nvim_set_keymap("n", "s", "<nop>", { noremap = true })
 keymap.set("n", "S", ":w<CR>") --save current file
 keymap.set("n", "Q", ":q<CR>") --save current file
 

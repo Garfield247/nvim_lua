@@ -17,7 +17,7 @@ return {
 				"prettier", -- prettier formatter
 				"stylua", -- lua formatter
 				"black", -- python formatter
-				"pylint", -- python linter
+				"pyright", -- python linter
 				"eslint_d", -- js linter
 			},
 		})
@@ -41,14 +41,10 @@ return {
 					extra_filetypes = { "svelte" },
 				}), -- js/ts formatter
 				formatting.stylua, -- lua formatter
-				formatting.isort,
-				-- diagnostics.pylint.with({ prefer_local = ".venv/bin" }),
-				diagnostics.pylint,
+				diagnostics.pyright,
 				formatting.black,
 				formatting.goimports,
 				formatting.gofmt,
-				diagnostics.mypy,
-				diagnostics.ruff,
 				diagnostics.eslint_d.with({ -- js/ts linter
 					condition = function(utils)
 						return utils.root_has_file({ ".eslintrc.js", ".eslintrc.cjs" }) -- only enable if root has .eslintrc.js or .eslintrc.cjs
