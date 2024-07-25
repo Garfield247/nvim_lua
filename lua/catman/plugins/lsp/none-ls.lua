@@ -19,6 +19,8 @@ return {
 				"black", -- python formatter
 				"pyright", -- python linter
 				"eslint_d", -- js linter
+				"gofumpt",
+				"goimports_reviser",
 			},
 		})
 
@@ -43,8 +45,10 @@ return {
 				formatting.stylua, -- lua formatter
 				diagnostics.pyright,
 				formatting.black,
+				-- formatting.gofmt,
 				formatting.goimports,
-				formatting.gofmt,
+				formatting.gofumpt,
+				-- formatting.goimports_reviser,
 				diagnostics.eslint_d.with({ -- js/ts linter
 					condition = function(utils)
 						return utils.root_has_file({ ".eslintrc.js", ".eslintrc.cjs" }) -- only enable if root has .eslintrc.js or .eslintrc.cjs

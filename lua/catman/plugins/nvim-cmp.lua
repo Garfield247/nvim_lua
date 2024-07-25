@@ -28,6 +28,16 @@ return {
 					luasnip.lsp_expand(args.body)
 				end,
 			},
+			window = {
+
+				completion = cmp.config.window.bordered({
+					border = "double",
+					-- winhighlight = "Normal:Normal,FloatBorder:Normal,CursorLine:Normal,Search:NONE",
+				}),
+				documentation = cmp.config.window.bordered({
+					border = "double",
+				}),
+			},
 			mapping = cmp.mapping.preset.insert({
 				["<C-k>"] = cmp.mapping.select_prev_item(), -- previous suggestion
 				["<C-j>"] = cmp.mapping.select_next_item(), -- next suggestion
@@ -64,15 +74,32 @@ return {
 			sources = cmp.config.sources({
 				{ name = "nvim_lsp" },
 				{ name = "luasnip" }, -- snippets
+				-- { name = "codeium" },
 				{ name = "buffer" }, -- text within current buffer
 				{ name = "path" }, -- file system paths
 			}),
 			-- configure lspkind for vs-code like pictograms in completion menu
 			formatting = {
-				format = lspkind.cmp_format({
-					maxwidth = 50,
-					ellipsis_char = "...",
-				}),
+				fields = { "kind", "abbr", "menu" },
+				format = function(entry, vim_item)
+					-- fancy icons and a name of kind
+					-- vim_item.kind = lspkind.presets.default[vim_item.kind] .. " " .. vim_item.kind
+					vim_item.kind = lspkind.presets.default[vim_item.kind]
+					vim_item.abbr = string.sub(vim_item.abbr, 1, 30)
+					-- set a name for each source
+					vim_item.menu = ({
+						buffer = "",
+						nvim_lsp = "",
+						LuaSnip = "󰦨",
+						ultisnips = "󰦨",
+						nvim_lua = "",
+						look = "",
+						path = "󰙅",
+						calc = "",
+						emoji = "󰱨",
+					})[entry.source.name]
+					return vim_item
+				end,
 			},
 		})
 	end,

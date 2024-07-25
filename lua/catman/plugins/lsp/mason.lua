@@ -17,9 +17,9 @@ return {
 		mason.setup({
 			ui = {
 				icons = {
-					package_installed = "✓",
-					package_pending = "➜",
-					package_uninstalled = "✗",
+					package_installed = "",
+					package_pending = "",
+					package_uninstalled = "",
 				},
 			},
 		})
@@ -33,6 +33,7 @@ return {
 				"lua_ls",
 				"emmet_ls",
 				"pyright",
+				"gopls",
 				-- "mypy",
 				-- "ruff",
 			},
@@ -47,11 +48,12 @@ return {
 				"black", -- python formatter
 				"pylint", -- python linter
 				"eslint_d", -- js linter
-				"gopls",
-				"goimports",
 				"iferr",
 				"impl",
+				"gofumpt",
+				"goimports",
 			},
+			automatic_installation = true, -- not the same as ensure_installed
 		})
 	end,
 }
