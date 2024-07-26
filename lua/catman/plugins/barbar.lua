@@ -18,10 +18,10 @@ return {
 
 			-- Automatically hide the tabline when there are this many buffers left.
 			-- Set to any value >=0 to enable.
-			auto_hide = false,
+			-- auto_hide = false,
 
 			-- Enable/disable current/total tabpages indicator (top right corner)
-			tabpages = true,
+			-- tabpages = true,
 
 			-- Enables/disable clickable tabs
 			--  - left-click: go to buffer
@@ -34,10 +34,10 @@ return {
 
 			-- A buffer to this direction will be focused (if it exists) when closing the current buffer.
 			-- Valid options are 'left' (the default), 'previous', and 'right'
-			focus_on_close = "left",
+			-- focus_on_close = "left",
 
 			-- Hide inactive buffers and file extensions. Other options are `alternate`, `current`, and `visible`.
-			hide = { extensions = true, inactive = true },
+			-- hide = { extensions = true, inactive = true },
 
 			-- Disable highlighting alternate buffers
 			highlight_alternate = false,
@@ -53,7 +53,7 @@ return {
 				-- Valid options to display the buffer index and -number are `true`, 'superscript' and 'subscript'
 				buffer_index = false,
 				buffer_number = false,
-				button = "",
+				button = "",
 				-- Enables / disables diagnostic symbols
 				diagnostics = {
 					[vim.diagnostic.severity.ERROR] = { enabled = true, icon = "ﬀ" },
@@ -75,7 +75,6 @@ return {
 					enabled = true,
 				},
 				separator = { left = "▎", right = "" },
-
 				-- If true, add an additional separator at the end of the buffer list
 				separator_at_end = true,
 
@@ -116,21 +115,21 @@ return {
 			-- assigned based on their name. Otherwise or in case all letters are
 			-- already assigned, the behavior is to assign letters in order of
 			-- usability (see order below)
-			semantic_letters = true,
+			semantic_letters = false,
 
 			-- Set the filetypes which barbar will offset itself for
 			sidebar_filetypes = {
 				-- Use the default values: {event = 'BufWinLeave', text = '', align = 'left'}
 				NvimTree = true,
-				-- Or, specify the text used for the offset:
-				undotree = {
-					text = "undotree",
-					align = "center", -- *optionally* specify an alignment (either 'left', 'center', or 'right')
-				},
-				-- Or, specify the event which the sidebar executes when leaving:
-				["neo-tree"] = { event = "BufWipeout" },
-				-- Or, specify all three
-				Outline = { event = "BufWinLeave", text = "symbols-outline", align = "right" },
+				-- -- Or, specify the text used for the offset:
+				-- undotree = {
+				-- 	text = "undotree",
+				-- 	align = "center", -- *optionally* specify an alignment (either 'left', 'center', or 'right')
+				-- },
+				-- -- Or, specify the event which the sidebar executes when leaving:
+				-- ["neo-tree"] = { event = "BufWipeout" },
+				-- -- Or, specify all three
+				-- Outline = { event = "BufWinLeave", text = "symbols-outline", align = "right" },
 			},
 
 			-- New buffer letters are assigned in this order. This order is

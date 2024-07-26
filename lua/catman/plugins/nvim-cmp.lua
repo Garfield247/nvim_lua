@@ -4,10 +4,14 @@ return {
 	dependencies = {
 		"hrsh7th/cmp-buffer", -- source for text in buffer
 		"hrsh7th/cmp-path", -- source for file system paths
+		"hrsh7th/cmp-nvim-lsp",
+		"hrsh7th/cmp-cmdline",
 		"L3MON4D3/LuaSnip", -- snippet engine
 		"saadparwaiz1/cmp_luasnip", -- for autocompletion
 		"rafamadriz/friendly-snippets", -- useful snippets
 		"onsails/lspkind.nvim", -- vs-code like pictograms
+		"hrsh7th/cmp-calc",
+		"hrsh7th/cmp-emoji",
 	},
 	config = function()
 		local cmp = require("cmp")
@@ -70,6 +74,7 @@ return {
 					end
 				end, { "i", "s" }),
 			}),
+
 			-- sources for autocompletion
 			sources = cmp.config.sources({
 				{ name = "nvim_lsp" },
@@ -77,29 +82,53 @@ return {
 				-- { name = "codeium" },
 				{ name = "buffer" }, -- text within current buffer
 				{ name = "path" }, -- file system paths
+				{ name = "emoji" },
+				{ name = "calc" },
 			}),
 			-- configure lspkind for vs-code like pictograms in completion menu
 			formatting = {
 				fields = { "kind", "abbr", "menu" },
-				format = function(entry, vim_item)
-					-- fancy icons and a name of kind
-					-- vim_item.kind = lspkind.presets.default[vim_item.kind] .. " " .. vim_item.kind
-					vim_item.kind = lspkind.presets.default[vim_item.kind]
-					vim_item.abbr = string.sub(vim_item.abbr, 1, 30)
-					-- set a name for each source
-					vim_item.menu = ({
-						buffer = "",
-						nvim_lsp = "",
-						LuaSnip = "󰦨",
-						ultisnips = "󰦨",
-						nvim_lua = "",
-						look = "",
-						path = "󰙅",
-						calc = "",
-						emoji = "󰱨",
-					})[entry.source.name]
-					return vim_item
-				end,
+				format = lspkind.cmp_format({
+					mode = "symbol", -- show only symbol annotations
+					maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
+					-- can also be a function to dynamically calculate max width such as
+					-- maxwidth = function() return math.floor(0.45 * vim.o.columns) end,
+					ellipsis_char = "...", -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
+					show_labelDetails = true, -- show labelDetails in menu. Disabled by default
+					menu = {
+						buffer = " Buffer",
+						nvim_lsp = " Lsp",
+						luasnip = "󰦨 Snip",
+						ultisnips = "󰦨 Snip",
+						nvim_lua = " Lua",
+						look = " Look",
+						path = "󰙅 Path",
+						calc = " Clac",
+						emoji = "󰱨 Emoji",
+					},
+
+					-- The function below will be called before any actual modifications from lspkind
+					-- so that you can provide more controls on popup customization. (See [#30](https://github.com/onsails/lspkind-nvim/pull/30))
+					-- before = function(entry, vim_item)
+					-- 	-- fancy icons and a name of kind
+					-- 	-- vim_item.kind = lspkind.presets.default[vim_item.kind] .. " " .. vim_item.kind
+					-- 	vim_item.kind = lspkind.presets.default[vim_item.kind]
+					-- 	vim_item.abbr = string.sub(vim_item.abbr, 1, 30)
+					-- 	-- set a name for each source
+					-- 	vim_item.menu = ({
+					-- 		buffer = "",
+					-- 		nvim_lsp = "",
+					-- 		luasnip = "󰦨",
+					-- 		ultisnips = "󰦨",
+					-- 		nvim_lua = "",
+					-- 		look = "",
+					-- 		path = "󰙅",
+					-- 		calc = "",
+					-- 		emoji = "󰱨",
+					-- 	})[entry.source.name]
+					-- 	return vim_item
+					-- end,
+				}),
 			},
 		})
 	end,
