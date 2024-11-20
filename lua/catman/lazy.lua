@@ -11,7 +11,13 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup({ { import = "catman.plugins" }, { import = "catman.plugins.lsp" } }, {
+require("lazy").setup({
+	{ import = "catman.plugins" },
+	{ import = "catman.plugins.ui" },
+	{ import = "catman.plugins.git" },
+	{ import = "catman.plugins.lsp" },
+	{ import = "catman.plugins.dap" },
+}, {
 	install = {
 		colorscheme = { "nightfly" },
 	},

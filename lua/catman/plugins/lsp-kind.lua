@@ -25,10 +25,10 @@ return {
 			symbol_map = {
 				Text = "󰉿",
 				Method = "󰆧",
-				Function = "󰊕",
+				Function = "󰡱",
 				Constructor = "",
 				Field = "󰜢",
-				Variable = "󰀫",
+				Variable = "𝑽",
 				Class = "󰠱",
 				Interface = "",
 				Module = "",
@@ -48,6 +48,7 @@ return {
 				Event = "",
 				Operator = "󰆕",
 				TypeParameter = "",
+				Codeium = "",
 			},
 		})
 	end,
