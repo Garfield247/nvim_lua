@@ -11,7 +11,7 @@ return {
 		"rafamadriz/friendly-snippets", -- useful snippets
 		"onsails/lspkind.nvim", -- vs-code like pictograms
 		"hrsh7th/cmp-calc",
-		"hrsh7th/cmp-emoji",
+		-- "hrsh7th/cmp-emoji",
 	},
 	config = function()
 		local cmp = require("cmp")
@@ -82,7 +82,7 @@ return {
 				-- { name = "codeium" },
 				{ name = "buffer" }, -- text within current buffer
 				{ name = "path" }, -- file system paths
-				{ name = "emoji" },
+				-- { name = "emoji" },
 				{ name = "calc" },
 			}),
 			-- configure lspkind for vs-code like pictograms in completion menu

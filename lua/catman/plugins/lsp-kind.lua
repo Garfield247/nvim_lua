@@ -31,7 +31,7 @@ return {
 				Variable = "𝑽",
 				Class = "󰠱",
 				Interface = "",
-				Module = "",
+				Module = "全",
 				Property = "󰜢",
 				Unit = "󰑭",
 				Value = "󰎠",
