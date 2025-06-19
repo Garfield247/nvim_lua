@@ -8,7 +8,6 @@ return {
 	config = function()
 		-- import lspconfig plugin
 		local lspconfig = require("lspconfig")
-
 		-- import cmp-nvim-lsp plugin
 		local cmp_nvim_lsp = require("cmp_nvim_lsp")
 
@@ -71,31 +70,32 @@ return {
 		end
 
 		-- configure html server
-		lspconfig["html"].setup({
+
+		vim.lsp.config("html", {
 			capabilities = capabilities,
 			on_attach = on_attach,
 		})
 
 		-- configure typescript server with plugin
-		lspconfig["ts_ls"].setup({
+		vim.lsp.config("ts_ls", {
 			capabilities = capabilities,
 			on_attach = on_attach,
 		})
 
 		-- configure css server
-		lspconfig["cssls"].setup({
+		vim.lsp.config("cssls", {
 			capabilities = capabilities,
 			on_attach = on_attach,
 		})
 
 		-- configure tailwindcss server
-		lspconfig["tailwindcss"].setup({
+		vim.lsp.config("tailwindcss", {
 			capabilities = capabilities,
 			on_attach = on_attach,
 		})
 
 		-- configure svelte server
-		lspconfig["svelte"].setup({
+		vim.lsp.config("svelte", {
 			capabilities = capabilities,
 			on_attach = function(client, bufnr)
 				on_attach(client, bufnr)
@@ -112,27 +112,27 @@ return {
 		})
 
 		-- configure prisma orm server
-		lspconfig["prismals"].setup({
+		vim.lsp.config("prismals", {
 			capabilities = capabilities,
 			on_attach = on_attach,
 		})
 
 		-- configure graphql language server
-		lspconfig["graphql"].setup({
+		vim.lsp.config("graphql", {
 			capabilities = capabilities,
 			on_attach = on_attach,
 			filetypes = { "graphql", "gql", "svelte", "typescriptreact", "javascriptreact" },
 		})
 
 		-- configure emmet language server
-		lspconfig["emmet_ls"].setup({
+		vim.lsp.config("emmet_ls", {
 			capabilities = capabilities,
 			on_attach = on_attach,
 			filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "svelte" },
 		})
 
 		-- configure python server
-		lspconfig["pyright"].setup({
+		vim.lsp.config("pyright", {
 			capabilities = capabilities,
 			on_attach = on_attach,
 			settings = {
@@ -149,7 +149,7 @@ return {
 		})
 
 		-- configure golang server
-		lspconfig["gopls"].setup({
+		vim.lsp.config("gopls", {
 			cmd = { "gopls" },
 			filetypes = { "go", "gomod", "gowork", "gotmpl", "api" },
 			on_attach = on_attach,
@@ -172,7 +172,7 @@ return {
 		})
 
 		-- configure lua server (with special settings)
-		lspconfig["lua_ls"].setup({
+		vim.lsp.config("lua_ls", {
 			capabilities = capabilities,
 			on_attach = on_attach,
 			settings = { -- custom settings for lua

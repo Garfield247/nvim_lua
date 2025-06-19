@@ -43,8 +43,8 @@ keymap.set("n", "<LEADER>tn", ":tabe<CR>")
 keymap.set("n", "<LEADER>th", ":-tabnext<CR>")
 keymap.set("n", "<LEADER>tl", ":+tabnext<CR>")
 -- Buffer
--- keymap.set("n", "<LEADER>bh", ":BufferNext<CR>")
--- keymap.set("n", "<LEADER>bl", ":BufferPrevious<CR>")
+keymap.set("n", "<LEADER>bh", ":BufferNext<CR>")
+keymap.set("n", "<LEADER>bl", ":BufferPrevious<CR>")
 -- 快速翻页
 keymap.set("n", "J", "10j")
 keymap.set("n", "K", "10k")

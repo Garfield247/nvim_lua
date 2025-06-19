@@ -45,6 +45,12 @@ return {
 					"python",
 					"go",
 					"vimdoc",
+					"gowork",
+					"gomod",
+					"gosum",
+					"sql",
+					"gotmpl",
+					"comment",
 				},
 				incremental_selection = {
 					enable = true,
