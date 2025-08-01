@@ -10,7 +10,6 @@ return {
 		end
 		-- Disable virtual text
 		vim.g.gitblame_display_virtual_text = 0
-		-- vim.g.gitblame_date_foramt = "%Y-%m-%d%H:%M:%S"
 		require("lualine").setup({
 			sections = {
 				lualine_c = {

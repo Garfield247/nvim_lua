@@ -19,7 +19,7 @@ require("lazy").setup({
 	{ import = "catman.plugins.dap" },
 }, {
 	install = {
-		colorscheme = { "nightfly" },
+		colorscheme = { "catppuccin-mocha" },
 	},
 	checker = {
 		enabled = true,
@@ -29,3 +29,5 @@ require("lazy").setup({
 		notify = false,
 	},
 })
+
+vim.cmd.colorscheme("catppuccin-mocha")
