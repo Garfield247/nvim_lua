@@ -22,7 +22,7 @@ return {
 			renderer = {
 				root_folder_label = false,
 				highlight_git = true,
-				highlight_opened_files = "none",
+				highlight_opened_files = "all",
 
 				indent_markers = {
 					enable = true,
@@ -72,6 +72,7 @@ return {
 				},
 			},
 			filters = {
+				enable = true,
 				custom = { ".DS_Store" },
 			},
 			git = {
