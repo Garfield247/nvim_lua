@@ -2,25 +2,22 @@ return {
 	"folke/neodev.nvim",
 	opts = {
 		library = {
-			enabled = true, -- when not enabled, neodev will not change any settings to the LSP server
-			-- these settings will be used for your Neovim config directory
-			runtime = true, -- runtime path
-			types = true, -- full signature, docs and completion of vim.api, vim.treesitter, vim.lsp and others
-			plugins = true, -- installed opt or start plugins in packpath
-			-- you can also specify the list of plugins to make available as a workspace library
+			enabled = true, -- 关闭后 neodev 不会修改 LSP 服务器的任何设置
+			-- 以下设置用于你的 Neovim 配置目录
+			runtime = true, -- 运行时路径
+			types = true, -- vim.api、vim.treesitter、vim.lsp 等的完整签名、文档与补全
+			plugins = true, -- packpath 中已安装的 opt 或 start 插件
+			-- 也可指定作为工作区库的插件列表
 			-- plugins = { "nvim-treesitter", "plenary.nvim", "telescope.nvim" },
 		},
-		setup_jsonls = true, -- configures jsonls to provide completion for project specific .luarc.json files
-		-- for your Neovim config directory, the config.library settings will be used as is
-		-- for plugin directories (root_dirs having a /lua directory), config.library.plugins will be disabled
-		-- for any other directory, config.library.enabled will be set to false
+		setup_jsonls = true, -- 配置 jsonls 为项目 .luarc.json 提供补全
+		-- 配置目录使用 config.library；插件目录（含 /lua 的 root_dirs）会禁用 config.library.plugins
+		-- 其他目录会将 config.library.enabled 设为 false
 		override = function(root_dir, options) end,
-		-- With lspconfig, Neodev will automatically setup your lua-language-server
-		-- If you disable this, then you have to set {before_init=require("neodev.lsp").before_init}
-		-- in your lsp start options
+		-- 配合 lspconfig 时，Neodev 会自动配置 lua-language-server
+		-- 若关闭此项，需在 LSP 启动选项中设置 {before_init=require("neodev.lsp").before_init}
 		lspconfig = true,
-		-- much faster, but needs a recent built of lua-language-server
-		-- needs lua-language-server >= 3.6.0
+		-- 更快，但需要较新版本的 lua-language-server（>= 3.6.0）
 		pathStrict = true,
 	},
 }

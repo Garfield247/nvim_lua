@@ -5,26 +5,22 @@ return {
 		"hrsh7th/nvim-cmp",
 	},
 	config = function()
-		-- import nvim-autopairs
+		-- 引入 nvim-autopairs
 		local autopairs = require("nvim-autopairs")
 
-		-- configure autopairs
+		-- 配置自动括号
 		autopairs.setup({
-			check_ts = true, -- enable treesitter
+			check_ts = true, -- 启用 treesitter 检查
 			ts_config = {
-				lua = { "string" }, -- don't add pairs in lua string treesitter nodes
-				javascript = { "template_string" }, -- don't add pairs in javscript template_string treesitter nodes
-				java = false, -- don't check treesitter on java
+				lua = { "string" }, -- Lua 字符串节点内不自动补全括号
+				javascript = { "template_string" }, -- JS 模板字符串内不补全
+				java = false, -- Java 不检查 treesitter
 			},
 		})
 
-		-- import nvim-autopairs completion functionality
+		-- 自动括号与补全联动
 		local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-
-		-- import nvim-cmp plugin (completions plugin)
 		local cmp = require("cmp")
-
-		-- make autopairs and completion work together
 		cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 	end,
 }

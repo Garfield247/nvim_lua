@@ -1,7 +1,7 @@
 return {
 	"nvimtools/none-ls.nvim", -- configure formatters & linters
 	lazy = true,
-	-- event = { "BufReadPre", "BufNewFile" }, -- to enable uncomment this
+	-- event = { "BufReadPre", "BufNewFile" }, -- 启用时取消注释
 	dependencies = {
 		"jay-babu/mason-null-ls.nvim",
 	},
@@ -14,48 +14,45 @@ return {
 
 		mason_null_ls.setup({
 			ensure_installed = {
-				"prettier", -- prettier formatter
-				"stylua", -- lua formatter
-				"black", -- python formatter
-				"pyright", -- python linter
-				"eslint_d", -- js linter
+				"prettier", -- 前端格式化
+				"stylua", -- Lua 格式化
+				"black", -- Python 格式化
+				"pyright", -- Python 检查
+				"eslint_d", -- JS 检查
 				"gofumpt",
 				"goimports_reviser",
 			},
 		})
 
-		-- for conciseness
-		local formatting = null_ls.builtins.formatting -- to setup formatters
-		local diagnostics = null_ls.builtins.diagnostics -- to setup linters
+		local formatting = null_ls.builtins.formatting -- 格式化
+		local diagnostics = null_ls.builtins.diagnostics -- 诊断/检查
 
-		-- to setup format on save
+		-- 保存时格式化
 		local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
-		-- configure null_ls
+		-- 配置 null_ls
 		null_ls.setup({
-			-- add package.json as identifier for root (for typescript monorepos)
+			-- 将 package.json 等作为根目录标识（适用于 TypeScript 单体仓库）
 			root_dir = null_ls_utils.root_pattern(".null-ls-root", "Makefile", ".git", "package.json"),
-			-- setup formatters & linters
+			-- 格式化与检查源
 			sources = {
-				--  to disable file types use
-				--  "formatting.prettier.with({disabled_filetypes: {}})" (see null-ls docs)
 				formatting.prettier.with({
 					extra_filetypes = { "svelte" },
-				}), -- js/ts formatter
-				formatting.stylua, -- lua formatter
+				}), -- JS/TS 格式化
+				formatting.stylua, -- Lua 格式化
 				diagnostics.pyright,
 				formatting.black,
 				-- formatting.gofmt,
 				formatting.goimports,
 				formatting.gofumpt,
 				-- formatting.goimports_reviser,
-				diagnostics.eslint_d.with({ -- js/ts linter
+				diagnostics.eslint_d.with({ -- JS/TS 检查
 					condition = function(utils)
-						return utils.root_has_file({ ".eslintrc.js", ".eslintrc.cjs" }) -- only enable if root has .eslintrc.js or .eslintrc.cjs
+						return utils.root_has_file({ ".eslintrc.js", ".eslintrc.cjs" }) -- 仅当根目录存在 eslint 配置时启用
 					end,
 				}),
 			},
-			-- configure format on save
+			-- 保存时格式化
 			on_attach = function(current_client, bufnr)
 				if current_client.supports_method("textDocument/formatting") then
 					vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })

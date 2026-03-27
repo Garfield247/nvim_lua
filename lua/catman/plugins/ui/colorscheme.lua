@@ -1,9 +1,9 @@
 return {
 	{
 		"bluz71/vim-nightfly-guicolors",
-		priority = 1000, -- make sure to load this before all the other start plugins
+		priority = 1000, -- 确保在其他启动插件之前加载
 		config = function()
-			-- load the colorscheme here
+			-- 在此加载配色方案
 			vim.cmd([[colorscheme nightfly]])
 		end,
 	},

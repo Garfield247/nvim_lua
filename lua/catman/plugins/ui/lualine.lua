@@ -3,7 +3,7 @@ return {
 	dependencies = { "nvim-tree/nvim-web-devicons" },
 	config = function()
 		local lualine = require("lualine")
-		local lazy_status = require("lazy.status") -- to configure lazy pending updates count
+		local lazy_status = require("lazy.status") -- 用于显示 lazy 待更新数量
 
 		local colors = {
 			blue = "#65D1FF",
@@ -49,7 +49,7 @@ return {
 			},
 		}
 
-		-- configure lualine with modified theme
+		-- 使用自定义主题配置 lualine
 		lualine.setup({
 			options = {
 				theme = my_lualine_theme,

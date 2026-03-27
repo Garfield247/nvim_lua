@@ -1,7 +1,7 @@
 return {
   "stevearc/conform.nvim",
   lazy = true,
-  event = { "BufReadPre", "BufNewFile" }, -- to disable, comment this out
+  event = { "BufReadPre", "BufNewFile" }, -- 禁用时注释掉此行
   config = function()
     local conform = require("conform")
 
@@ -34,6 +34,6 @@ return {
         async = false,
         timeout_ms = 1000,
       })
-    end, { desc = "Format file or range (in visual mode)" })
+    end, { desc = "格式化文件或选中区域（可视模式）" })
   end,
 }

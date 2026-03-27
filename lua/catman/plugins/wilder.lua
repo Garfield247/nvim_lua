@@ -1,6 +1,6 @@
 return {
 	"gelguy/wilder.nvim",
 	config = function()
-		-- config goes here
+		-- 在此填写配置
 	end,
 }

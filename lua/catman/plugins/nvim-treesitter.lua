@@ -8,21 +8,21 @@ return {
 			"windwp/nvim-ts-autotag",
 		},
 		config = function()
-			-- import nvim-treesitter plugin
+			-- 引入 nvim-treesitter
 			local treesitter = require("nvim-treesitter.configs")
 
-			-- configure treesitter
-			treesitter.setup({ -- enable syntax highlighting
+			-- 配置 treesitter
+			treesitter.setup({ -- 语法高亮
 				highlight = {
 					enable = true,
 				},
-				-- enable indentation
+				-- 缩进
 				indent = { enable = true },
-				-- enable autotagging (w/ nvim-ts-autotag plugin)
+				-- 自动标签（配合 nvim-ts-autotag）
 				autotag = {
 					enable = true,
 				},
-				-- ensure these language parsers are installed
+				-- 要安装的语言解析器
 				ensure_installed = {
 					"json",
 					"javascript",
@@ -63,7 +63,7 @@ return {
 				},
 			})
 
-			-- enable nvim-ts-context-commentstring plugin for commenting tsx and jsx
+			-- 为 tsx、jsx 等提供正确的注释上下文
 			require("ts_context_commentstring").setup({})
 		end,
 	},

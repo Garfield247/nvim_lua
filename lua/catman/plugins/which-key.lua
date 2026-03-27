@@ -7,8 +7,7 @@ return {
 		vim.o.timeoutlen = 2
 	end,
 	opts = {
-		-- your configuration comes here
-		-- or leave it empty to use the default settings
-		-- refer to the configuration section below
+		-- 在此填写配置，或留空使用默认
+		-- 详见插件文档的配置说明
 	},
 }

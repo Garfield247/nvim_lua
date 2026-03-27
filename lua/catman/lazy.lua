@@ -5,7 +5,7 @@ if not vim.loop.fs_stat(lazypath) then
 		"clone",
 		"--filter=blob:none",
 		"https://github.com/folke/lazy.nvim.git",
-		"--branch=stable", -- latest stable release
+		"--branch=stable", -- 最新稳定版
 		lazypath,
 	})
 end
@@ -16,7 +16,7 @@ require("lazy").setup({
 	{ import = "catman.plugins.ui" },
 	{ import = "catman.plugins.git" },
 	{ import = "catman.plugins.lsp" },
-	{ import = "catman.plugins.dap" },
+	-- { import = "catman.plugins.dap" },
 }, {
 	install = {
 		colorscheme = { "catppuccin-mocha" },

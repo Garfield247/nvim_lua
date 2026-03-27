@@ -1,54 +1,48 @@
-local opt = vim.opt -- for conciseness
+local opt = vim.opt -- 简写
 
--- line numbers
-opt.relativenumber = true -- show relative line numbers
-opt.number = true -- shows absolute line number on cursor line (when relative number is on)
--- opt.ambiwidth = "double"
+-- 行号
+opt.relativenumber = true -- 显示相对行号
+opt.number = true -- 当前行显示绝对行号（开启相对行号时）
 
--- tabs & indentation
-opt.tabstop = 4 -- 4 spaces for tabs (prettier default)
-opt.shiftwidth = 4 -- 2 spaces for indent width
-opt.expandtab = true -- expand tab to spaces
-opt.autoindent = true -- copy indent from current line when starting new one
+-- 制表符与缩进
+opt.tabstop = 4 -- 制表符显示为 4 个空格
+opt.shiftwidth = 4 -- 缩进宽度 4 个空格
+opt.expandtab = true -- 将 Tab 展开为空格
+opt.autoindent = true -- 新行继承当前行缩进
 opt.smarttab = true
-opt.smartindent = true -- copy indent from current line when starting new one
+opt.smartindent = true -- 智能缩进
 
--- line wrapping
-opt.wrap = true -- disable line wrapping
+-- 换行
+opt.wrap = true -- 启用自动换行
 
--- search settings
+-- 搜索
 opt.incsearch = true
-opt.ignorecase = true -- ignore case when searching
-opt.smartcase = true -- if you include mixed case in your search, assumes you want case-sensitive
+opt.ignorecase = true -- 搜索时忽略大小写
+opt.smartcase = true -- 若搜索含大写则区分大小写
 
--- cursor line
-opt.cursorline = true -- highlight the current cursor line
+-- 光标行
+opt.cursorline = true -- 高亮当前光标所在行
 
--- appearance
-
--- turn on termguicolors for nightfly colorscheme to work
--- (have to use iterm2 or any other true color terminal)
+-- 外观
+-- 启用真彩色（需 iTerm2 等支持真彩的终端）
 opt.termguicolors = true
-opt.background = "dark" -- colorschemes that can be light or dark will be made dark
-opt.signcolumn = "yes" -- show sign column so that text doesn't shift
+opt.background = "dark" -- 深色主题
+opt.signcolumn = "yes" -- 显示标记列，避免文字抖动
 
--- backspace
-opt.backspace = "indent,eol,start" -- allow backspace on indent, end of line or insert mode start position
+-- 退格
+opt.backspace = "indent,eol,start" -- 退格可删除缩进、行尾、插入起始位置
 
--- clipboard
-opt.clipboard:append("unnamedplus") -- use system clipboard as default register
+-- 剪贴板
+opt.clipboard:append("unnamedplus") -- 使用系统剪贴板作为默认寄存器
 
--- split windows
-opt.splitright = true -- split vertical window to the right
-opt.splitbelow = true -- split horizontal window to the bottom
+-- 分屏
+opt.splitright = true -- 垂直分屏时新窗口在右侧
+opt.splitbelow = true -- 水平分屏时新窗口在下方
 
--- turn off swapfile
+-- 关闭交换文件
 opt.swapfile = false
 
-opt.iskeyword:append("-") -- consider string-string as whole word--vi
+opt.iskeyword:append("-") -- 将 string-string 视为一个单词
 
 opt.showcmd = true
 opt.wildmenu = true
-
--- set global python env- vim.g.python3_host_prog = "/Users/catman/.pyenv/shims/python"
--- vim.env.PYENV_VERSION = vim.fn.system("pyenv version"):match("(%S+)%s+%(.-%)")

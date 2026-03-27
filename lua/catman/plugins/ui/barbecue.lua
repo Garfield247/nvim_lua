@@ -4,9 +4,9 @@ return {
 	version = "*",
 	dependencies = {
 		"SmiteshP/nvim-navic",
-		"nvim-tree/nvim-web-devicons", -- optional dependency
+		"nvim-tree/nvim-web-devicons", -- 可选依赖
 	},
 	opts = {
-		-- configurations go here
+		-- 在此填写配置
 	},
 }

@@ -16,8 +16,8 @@ return {
 				path_display = { "truncate " },
 				mappings = {
 					i = {
-						["<C-k>"] = actions.move_selection_previous, -- move to prev result
-						["<C-j>"] = actions.move_selection_next, -- move to next result
+						["<C-k>"] = actions.move_selection_previous, -- 上一条结果
+						["<C-j>"] = actions.move_selection_next, -- 下一条结果
 						["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
 					},
 				},
@@ -34,13 +34,13 @@ return {
 
 		telescope.load_extension("fzf")
 
-		-- set keymaps
-		local keymap = vim.keymap -- for conciseness
+		-- 键位
+		local keymap = vim.keymap
 
-		keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "Fuzzy find files in cwd" })
-		keymap.set("n", "<leader>fr", "<cmd>Telescope oldfiles<cr>", { desc = "Fuzzy find recent files" })
-		keymap.set("n", "<leader>fs", "<cmd>Telescope live_grep<cr>", { desc = "Find string in cwd" })
-		keymap.set("n", "<leader>fc", "<cmd>Telescope grep_string<cr>", { desc = "Find string under cursor in cwd" })
-		keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<cr>", { desc = "Find buffer in cwd" })
+		keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "模糊查找当前目录文件" })
+		keymap.set("n", "<leader>fr", "<cmd>Telescope oldfiles<cr>", { desc = "最近打开的文件" })
+		keymap.set("n", "<leader>fs", "<cmd>Telescope live_grep<cr>", { desc = "在当前目录搜索字符串" })
+		keymap.set("n", "<leader>fc", "<cmd>Telescope grep_string<cr>", { desc = "搜索光标下字符串" })
+		keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<cr>", { desc = "查找缓冲区" })
 	end,
 }
