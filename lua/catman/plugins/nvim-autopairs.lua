@@ -1,3 +1,4 @@
+-- nvim-autopairs：自动补全括号、引号等成对符号，与 nvim-cmp 和 treesitter 深度集成
 return {
 	"windwp/nvim-autopairs",
 	event = { "InsertEnter" },

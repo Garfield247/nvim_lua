@@ -1,3 +1,4 @@
+-- neodev.nvim：为 Neovim 配置开发提供 Lua API 类型提示、文档补全和签名帮助
 return {
 	"folke/neodev.nvim",
 	opts = {

@@ -1,3 +1,4 @@
+-- which-key.nvim：按键提示弹窗，输入前缀键后自动显示所有可用的后续按键及其说明
 return {
 	"folke/which-key.nvim",
 	enabled = true,

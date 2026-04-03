@@ -1,3 +1,4 @@
+-- nvim-treesitter-textobjects：基于语法树的文本对象，支持按函数、类、参数等语法单元选择和跳转
 return {
 	"nvim-treesitter/nvim-treesitter-textobjects",
 	lazy = true,

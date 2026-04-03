@@ -1,3 +1,4 @@
+-- outline.nvim：代码大纲侧边栏，展示当前文件的函数、类、变量等符号结构树
 return {
 	"hedyhli/outline.nvim",
 	config = function()

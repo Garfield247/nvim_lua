@@ -1,3 +1,4 @@
+-- icon-picker.nvim：图标选择器，可在编辑器内搜索并插入 Nerd Font、emoji 等图标
 return {
 	"ziontee113/icon-picker.nvim",
 	config = function()

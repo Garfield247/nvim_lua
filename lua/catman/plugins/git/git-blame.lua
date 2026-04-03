@@ -1,3 +1,4 @@
+-- git-blame.nvim：在状态栏实时显示当前行的 Git blame 信息（作者、时间、提交）
 return {
 	"f-person/git-blame.nvim",
 	event = { "BufReadPre", "BufNewFile" },

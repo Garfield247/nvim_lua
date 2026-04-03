@@ -1,3 +1,4 @@
+-- undotree：可视化撤销历史树，支持在分支间跳转恢复任意历史状态
 return {
 	"mbbill/undotree",
 	lazy = false,

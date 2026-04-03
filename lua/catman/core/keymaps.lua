@@ -43,11 +43,11 @@ keymap.set("n", "<LEADER>tn", ":tabe<CR>", { desc = "新建标签页" })
 keymap.set("n", "<LEADER>th", ":-tabnext<CR>", { desc = "上一个标签页" })
 keymap.set("n", "<LEADER>tl", ":+tabnext<CR>", { desc = "下一个标签页" })
 -- 缓冲区
-keymap.set("n", "<LEADER>bh", ":BufferNext<CR>", { desc = "下一个缓冲区" })
-keymap.set("n", "<LEADER>bl", ":BufferPrevious<CR>", { desc = "上一个缓冲区" })
--- 快速翻页
-keymap.set("n", "J", "10j", { desc = "下移 10 行" })
-keymap.set("n", "K", "10k", { desc = "上移 10 行" })
+keymap.set("n", "<LEADER>bl", ":BufferNext<CR>", { desc = "下一个缓冲区" })
+keymap.set("n", "<LEADER>bh", ":BufferPrevious<CR>", { desc = "上一个缓冲区" })
+-- 快速翻页（保留原生 J 合并行、K 查文档）
+keymap.set("n", "<C-d>", "<C-d>zz", { desc = "下翻半页并居中" })
+keymap.set("n", "<C-u>", "<C-u>zz", { desc = "上翻半页并居中" })
 
 -- 取消检索高亮
 keymap.set("n", "=", "Nzz", { desc = "上一个搜索结果" })

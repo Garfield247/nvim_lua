@@ -1,3 +1,4 @@
+-- nvim-chainsaw：一键在光标处插入 log/print 调试语句，支持多语言
 -- https://github.com/chrisgrieser/nvim-chainsaw
 
 return {

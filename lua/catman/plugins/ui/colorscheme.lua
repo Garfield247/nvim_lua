@@ -1,3 +1,4 @@
+-- vim-nightfly-guicolors 等：备用配色方案集合，当前启用 nightfly 深色主题
 return {
 	{
 		"bluz71/vim-nightfly-guicolors",

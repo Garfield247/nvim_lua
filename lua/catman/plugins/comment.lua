@@ -1,3 +1,4 @@
+-- Comment.nvim：智能代码注释，支持行注释、块注释，配合 treesitter 处理 JSX/TSX 等混合语言
 return {
 	"numToStr/Comment.nvim",
 	event = { "BufReadPre", "BufNewFile" },

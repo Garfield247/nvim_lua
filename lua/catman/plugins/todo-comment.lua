@@ -1,3 +1,4 @@
+-- todo-comments.nvim：高亮并管理代码中的 TODO/FIXME/HACK 等注释标记，支持全局搜索跳转
 return {
 	"folke/todo-comments.nvim",
 	dependencies = { "nvim-lua/plenary.nvim" },

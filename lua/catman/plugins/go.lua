@@ -1,3 +1,4 @@
+-- go.nvim：Go 语言开发增强，提供 goimport、测试运行、代码生成等一站式 Go 工具集
 return {
 	"ray-x/go.nvim",
 	dependencies = { -- optional packages
@@ -28,7 +29,10 @@ return {
 			group = format_sync_grp,
 		})
 		-- enable go
-		go.setup()
+		go.setup({
+			lsp_cfg = false,     -- 由 lspconfig.lua 统一管理 gopls，避免冲突
+			lsp_gofumpt = false, -- 格式化由 conform.nvim 处理
+		})
 	end,
 	event = { "CmdlineEnter" },
 	ft = { "go", "gomod", "api" },

@@ -1,3 +1,4 @@
+-- nvim-dap：Debug Adapter Protocol 调试框架，支持断点、单步、变量查看等调试功能
 return {
 	{
 		"mfussenegger/nvim-dap",

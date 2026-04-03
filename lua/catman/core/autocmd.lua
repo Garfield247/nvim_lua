@@ -9,10 +9,13 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 	end,
 })
 
--- 保存时删除行尾空白
+-- 保存时删除行尾空白（markdown 除外，两个空格结尾是换行语法）
 vim.api.nvim_create_autocmd("BufWritePre", {
 	pattern = "*",
 	callback = function()
+		if vim.bo.filetype == "markdown" then
+			return
+		end
 		local save_cursor = vim.fn.getpos(".")
 		vim.cmd([[%s/\s\+$//e]])
 		vim.fn.setpos(".", save_cursor)

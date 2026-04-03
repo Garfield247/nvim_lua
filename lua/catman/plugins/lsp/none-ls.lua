@@ -1,7 +1,8 @@
+-- none-ls.nvim：将外部格式化工具和 linter 接入 LSP 协议（已由 conform.nvim 替代，当前禁用）
 return {
-	"nvimtools/none-ls.nvim", -- configure formatters & linters
+	"nvimtools/none-ls.nvim",
+	enabled = false, -- 已由 conform.nvim 替代，禁用避免重复格式化
 	lazy = true,
-	-- event = { "BufReadPre", "BufNewFile" }, -- 启用时取消注释
 	dependencies = {
 		"jay-babu/mason-null-ls.nvim",
 	},

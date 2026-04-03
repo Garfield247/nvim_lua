@@ -1,3 +1,4 @@
+-- conform.nvim：轻量级代码格式化框架，支持多格式化器按文件类型配置，保存时自动格式化
 return {
   "stevearc/conform.nvim",
   lazy = true,

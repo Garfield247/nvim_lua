@@ -1,3 +1,4 @@
+-- lazygit.nvim：在 Neovim 内嵌入 lazygit 终端 Git 客户端，提供完整的可视化 Git 操作界面
 -- nvim v0.8.0
 return {
 	{

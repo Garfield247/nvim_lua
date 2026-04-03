@@ -1,3 +1,6 @@
+-- 禁用不需要的 provider，消除 checkhealth 警告
+vim.g.loaded_perl_provider = 0
+
 local opt = vim.opt -- 简写
 
 -- 行号
@@ -46,3 +49,9 @@ opt.iskeyword:append("-") -- 将 string-string 视为一个单词
 
 opt.showcmd = true
 opt.wildmenu = true
+
+-- 体验优化
+opt.scrolloff = 8        -- 光标距屏幕边缘保留 8 行
+opt.updatetime = 250     -- 更快触发 CursorHold（影响 LSP hover 延迟）
+opt.timeoutlen = 300     -- which-key 弹出更快
+opt.undofile = true      -- 持久化撤销历史（配合 undotree 更好用）

@@ -1,3 +1,4 @@
+-- mason.nvim：LSP 服务器、格式化工具、linter 的统一安装和管理器
 return {
 	"mason-org/mason.nvim",
 	dependencies = {

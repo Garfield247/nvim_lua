@@ -1,3 +1,4 @@
+-- text-case.nvim：快速转换文本大小写格式，支持 camelCase、snake_case、PascalCase 等互转
 -- https://github.com/johmsalas/text-case.nvim
 return {
 	"johmsalas/text-case.nvim",

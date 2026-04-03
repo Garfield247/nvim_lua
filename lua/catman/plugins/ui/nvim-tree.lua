@@ -1,3 +1,4 @@
+-- nvim-tree.lua：文件树侧边栏，支持 Git 状态显示、图标、过滤等功能
 return {
 	"nvim-tree/nvim-tree.lua",
 	dependencies = { "nvim-tree/nvim-web-devicons" },

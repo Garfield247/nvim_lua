@@ -1,3 +1,4 @@
+-- lualine.nvim：高度可定制的状态栏插件，显示模式、文件信息、Git 状态、诊断等
 return {
 	"nvim-lualine/lualine.nvim",
 	dependencies = { "nvim-tree/nvim-web-devicons" },

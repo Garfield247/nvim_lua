@@ -1,7 +1,7 @@
+-- telescope.nvim：强大的模糊查找框架，支持文件、字符串、缓冲区、LSP 符号等全局搜索
 return {
 	"nvim-telescope/telescope.nvim",
-	tag = "0.1.8",
-	-- branch = "0.1.x",
+	branch = "0.1.x",
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
