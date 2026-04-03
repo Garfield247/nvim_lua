@@ -1,56 +1,7 @@
--- nvim-dap：Debug Adapter Protocol 调试框架，支持断点、单步、变量查看等调试功能
-return {
-	{
-		"mfussenegger/nvim-dap",
-		dependencies = {
-			"rcarriga/nvim-dap-ui",
-			"leoluz/nvim-dap-go",
-			"nvim-neotest/nvim-nio",
-		},
-		config = function()
-			local dap, dapui = require("dap"), require("dapui")
-
-			require("dapui").setup()
-			require("dap-go").setup()
-
-			dap.listeners.before.attach.dapui_config = function()
-				dapui.open()
-			end
-			dap.listeners.before.launch.dapui_config = function()
-				dapui.open()
-			end
-			dap.listeners.before.event_terminated.dapui_config = function()
-				dapui.close()
-			end
-			dap.listeners.before.event_exited.dapui_config = function()
-				dapui.close()
-			end
-
-			vim.keymap.set("n", "<Leader>dt", ":DapUiToggle<CR>", { desc = "切换 DAP 界面" })
-			vim.keymap.set("n", "<Leader>db", dap.toggle_breakpoint, { desc = "切换断点" })
-			vim.keymap.set("n", "<Leader>dc", dap.continue, { desc = "继续调试" })
-			vim.keymap.set("n", "<Leader>dr", ":lua require('dapui').open({reset = true})<CR>", { desc = "重置 DAP 界面" })
-
-			vim.fn.sign_define(
-				"DapBreakpoint",
-				{ text = "⏺", texthl = "DapBreakpoint", linehl = "DapBreakpoint", numhl = "DapBreakpoint" }
-			)
-		end,
-	},
-	{
-		"mfussenegger/nvim-dap-python",
-		ft = "python",
-		dependencies = {
-			"mfussenegger/nvim-dap",
-		},
-		config = function(_, opts)
-			local mason_path = vim.fn.stdpath("data") .. "/mason/packages/debugpy/venv/bin/python3"
-			local debugpy_path = vim.fn.expand(mason_path)
-			-- 若未通过 mason 安装 debugpy，则回退到系统 python
-			if vim.fn.executable(debugpy_path) == 0 then
-				debugpy_path = vim.fn.exepath("python3") or "python3"
-			end
-			require("dap-python").setup(debugpy_path)
-		end,
-	},
-}
+-- DAP 配置已迁移至 lua/catman/plugins/dap/ 目录下
+-- - nvim-dap.lua          核心框架 + 快捷键
+-- - nvim-dap-ui.lua       调试 UI 面板
+-- - nvim-dap-virtual-text.lua  行内变量值显示
+-- - dap-go.lua            Go 调试配置
+-- - dap-python.lua        Python 调试配置
+return {}

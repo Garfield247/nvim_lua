@@ -13,10 +13,14 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
 	{ import = "catman.plugins" },
+	{ import = "catman.plugins.completion" },
+	{ import = "catman.plugins.editor" },
+	{ import = "catman.plugins.tools" },
+	{ import = "catman.plugins.lang" },
 	{ import = "catman.plugins.ui" },
 	{ import = "catman.plugins.git" },
 	{ import = "catman.plugins.lsp" },
-	-- { import = "catman.plugins.dap" },
+	{ import = "catman.plugins.dap" },
 }, {
 	install = {
 		colorscheme = { "catppuccin-mocha" },

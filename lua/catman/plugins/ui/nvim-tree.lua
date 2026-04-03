@@ -15,6 +15,12 @@ return {
 
 		-- 配置 nvim-tree
 		nvimtree.setup({
+			sync_root_with_cwd = true,   -- 跟随 cwd 切换根目录（配合 project.nvim）
+			respect_buf_cwd = true,
+			update_focused_file = {
+				enable = true,
+				update_root = true,
+			},
 			view = {
 				width = 35,
 				relativenumber = true,
