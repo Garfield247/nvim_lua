@@ -1,5 +1,6 @@
 -- 禁用不需要的 provider，消除 checkhealth 警告
 vim.g.loaded_perl_provider = 0
+vim.g.loaded_ruby_provider = 0
 
 local opt = vim.opt -- 简写
 
@@ -44,6 +45,7 @@ opt.splitbelow = true -- 水平分屏时新窗口在下方
 
 -- 关闭交换文件
 opt.swapfile = false
+opt.autoread = true -- 文件被外部工具修改后允许自动重新读取
 
 opt.iskeyword:append("-") -- 将 string-string 视为一个单词
 

@@ -9,11 +9,27 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 	end,
 })
 
+-- 外部工具（如 Codex CLI）改写文件后，自动检查并刷新 buffer
+vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold", "CursorHoldI" }, {
+	callback = function()
+		if vim.fn.mode() == "c" then
+			return
+		end
+		vim.cmd("checktime")
+	end,
+})
+
+vim.api.nvim_create_autocmd("FileChangedShellPost", {
+	callback = function()
+		vim.notify("File reloaded from disk", vim.log.levels.INFO, { title = "nvim" })
+	end,
+})
+
 -- 保存时删除行尾空白（markdown 除外，两个空格结尾是换行语法）
 vim.api.nvim_create_autocmd("BufWritePre", {
 	pattern = "*",
 	callback = function()
-		if vim.bo.filetype == "markdown" then
+		if vim.bo.filetype == "markdown" or not vim.bo.modifiable or vim.bo.readonly then
 			return
 		end
 		local save_cursor = vim.fn.getpos(".")

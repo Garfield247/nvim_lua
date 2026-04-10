@@ -45,7 +45,9 @@ keymap.set("n", "<LEADER>tl", ":+tabnext<CR>", { desc = "下一个标签页" })
 -- 缓冲区
 keymap.set("n", "<LEADER>bl", ":BufferNext<CR>", { desc = "下一个缓冲区" })
 keymap.set("n", "<LEADER>bh", ":BufferPrevious<CR>", { desc = "上一个缓冲区" })
--- 快速翻页（保留原生 J 合并行、K 查文档）
+-- 快速翻页（用 JK 翻页并居中，禁用原生 J 合并行、K 查文档）
+keymap.set("n", "J", "10jzz", { desc = "下移10行并居中" })
+keymap.set("n", "K", "10kzz", { desc = "上移10行并居中" })
 keymap.set("n", "<C-d>", "<C-d>zz", { desc = "下翻半页并居中" })
 keymap.set("n", "<C-u>", "<C-u>zz", { desc = "上翻半页并居中" })
 

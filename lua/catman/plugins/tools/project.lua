@@ -22,7 +22,8 @@ return {
 			silent_chdir = true,
 
 			-- 切换范围：global（全局）/ tab / win
-			scope_chdir = "global",
+			-- 改为 win 级别，避免全局 cd 触发 nvim-tree 的 DirChanged bug
+			scope_chdir = "win",
 
 			-- telescope 中显示隐藏文件
 			show_hidden = false,

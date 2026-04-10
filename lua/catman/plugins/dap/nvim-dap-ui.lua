@@ -6,7 +6,10 @@ return {
 		"nvim-neotest/nvim-nio",
 	},
 	config = function()
-		require("dapui").setup({
+		local dap = require("dap")
+		local dapui = require("dapui")
+
+		dapui.setup({
 			layouts = {
 				{
 					elements = {
@@ -28,5 +31,10 @@ return {
 				},
 			},
 		})
+
+		-- 只在 dap-ui 成功加载后注册监听，避免缺依赖时把 nvim 启动直接打断
+		dap.listeners.after.event_initialized["dapui_config"] = function() dapui.open() end
+		dap.listeners.before.event_terminated["dapui_config"] = function() dapui.close() end
+		dap.listeners.before.event_exited["dapui_config"] = function() dapui.close() end
 	end,
 }

@@ -2,8 +2,6 @@
 return {
 	"mfussenegger/nvim-dap",
 	dependencies = {
-		"rcarriga/nvim-dap-ui",
-		"nvim-neotest/nvim-nio",
 		"leoluz/nvim-dap-go",
 		"mfussenegger/nvim-dap-python",
 		"theHamsta/nvim-dap-virtual-text",
@@ -22,19 +20,11 @@ return {
 		{ "<Leader>de", function() require("dapui").eval() end,                              desc = "求值表达式", mode = { "n", "v" } },
 	},
 	config = function()
-		local dap = require("dap")
-		local dapui = require("dapui")
-
 		-- 断点图标
 		vim.fn.sign_define("DapBreakpoint",          { text = "⏺", texthl = "DiagnosticError" })
 		vim.fn.sign_define("DapBreakpointCondition", { text = "⏺", texthl = "DiagnosticWarn" })
 		vim.fn.sign_define("DapBreakpointRejected",  { text = "⏺", texthl = "DiagnosticHint" })
 		vim.fn.sign_define("DapLogPoint",            { text = "◆", texthl = "DiagnosticInfo" })
 		vim.fn.sign_define("DapStopped",             { text = "▶", texthl = "DiagnosticOk", linehl = "DapStoppedLine" })
-
-		-- 调试开始/结束时自动开关 UI
-		dap.listeners.after.event_initialized["dapui_config"] = function() dapui.open() end
-		dap.listeners.before.event_terminated["dapui_config"] = function() dapui.close() end
-		dap.listeners.before.event_exited["dapui_config"]     = function() dapui.close() end
 	end,
 }

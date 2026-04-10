@@ -30,8 +30,9 @@ return {
 		})
 		-- enable go
 		go.setup({
-			lsp_cfg = false,     -- 由 lspconfig.lua 统一管理 gopls，避免冲突
-			lsp_gofumpt = false, -- 格式化由 conform.nvim 处理
+			lsp_cfg = false,      -- 由 lspconfig.lua 统一管理 gopls，避免冲突
+			lsp_gofumpt = false,  -- 格式化由 conform.nvim 处理
+			lsp_codelens = false, -- go.nvim 目前调用了 0.11.3 不存在的 vim.lsp.codelens.enable()，先关闭避免报错
 		})
 	end,
 	event = { "CmdlineEnter" },

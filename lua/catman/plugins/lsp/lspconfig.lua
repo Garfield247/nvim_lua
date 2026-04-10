@@ -45,7 +45,7 @@ return {
 		local capabilities = cmp_nvim_lsp.default_capabilities()
 
 		-- 诊断图标
-		local signs = { Error = "", Warn = "", Hint = "󰠠", Info = "" }
+		local signs = { Error = "", Warn = "", Hint = "󰠠", Info = "" }
 		for type, icon in pairs(signs) do
 			local hl = "DiagnosticSign" .. type
 			vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
@@ -65,12 +65,27 @@ return {
 		vim.lsp.config("html", { capabilities = capabilities })
 		vim.lsp.config("ts_ls", { capabilities = capabilities })
 		vim.lsp.config("cssls", { capabilities = capabilities })
-		vim.lsp.config("tailwindcss", { capabilities = capabilities })
+		vim.lsp.config("tailwindcss", {
+			capabilities = capabilities,
+			filetypes = {
+				"html",
+				"css",
+				"scss",
+				"less",
+				"javascript",
+				"javascriptreact",
+				"typescript",
+				"typescriptreact",
+				"vue",
+				"svelte",
+				"markdown",
+			},
+		})
 		vim.lsp.config("prismals", { capabilities = capabilities })
 
 		vim.lsp.config("graphql", {
 			capabilities = capabilities,
-			filetypes = { "graphql", "gql", "svelte", "typescriptreact", "javascriptreact" },
+			filetypes = { "graphql", "svelte", "typescriptreact", "javascriptreact" },
 		})
 
 		vim.lsp.config("emmet_ls", {
@@ -109,7 +124,7 @@ return {
 
 		vim.lsp.config("gopls", {
 			cmd = { "gopls" },
-			filetypes = { "go", "gomod", "gowork", "gotmpl", "api" },
+			filetypes = { "go", "gomod" },
 			capabilities = capabilities,
 			settings = {
 				gopls = {
@@ -148,8 +163,17 @@ return {
 
 		-- 启用所有已配置的服务器
 		vim.lsp.enable({
-			"html", "ts_ls", "cssls", "tailwindcss", "prismals",
-			"graphql", "emmet_ls", "svelte", "pyright", "gopls", "lua_ls",
+			"html",
+			"ts_ls",
+			"cssls",
+			"tailwindcss",
+			"prismals",
+			"graphql",
+			"emmet_ls",
+			"svelte",
+			"pyright",
+			"gopls",
+			"lua_ls",
 		})
 	end,
 }

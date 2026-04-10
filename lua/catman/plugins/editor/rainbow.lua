@@ -4,6 +4,16 @@ return {
 	config = function()
 		local rainbow_delimiters = require("rainbow-delimiters")
 		vim.g.rainbow_delimiters = {
+			condition = function(bufnr)
+				local ft = vim.bo[bufnr].filetype
+				local lang = vim.treesitter.language.get_lang(ft)
+				if not lang then
+					return false
+				end
+
+				local ok, parser = pcall(vim.treesitter.get_parser, bufnr, lang)
+				return ok and parser ~= nil
+			end,
 			strategy = {
 				[""] = rainbow_delimiters.strategy["global"],
 				vim = rainbow_delimiters.strategy["local"],
