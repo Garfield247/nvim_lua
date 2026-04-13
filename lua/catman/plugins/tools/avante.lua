@@ -33,9 +33,21 @@ return {
 		},
 	},
 	opts = {
-		-- 使用 MiniMax，通过 OpenAI 兼容接口接入
+		-- 使用 OpenAI GPT-5.4
 		provider = "minimax",
 		providers = {
+			gpt54 = {
+				__inherited_from = "openai",
+				model = "gpt-5.4",
+				timeout = 60000,
+				extra_request_body = {
+					temperature = 0.75,
+					max_tokens = 8192,
+				},
+				-- 在 ~/.zshrc 或 ~/.bashrc 中添加：
+				-- export OPENAI_API_KEY=your_api_key_here
+				api_key_name = "OPENAI_API_KEY",
+			},
 			minimax = {
 				__inherited_from = "openai", -- 继承 openai 的请求解析逻辑
 				endpoint = "https://api.minimaxi.com/v1",

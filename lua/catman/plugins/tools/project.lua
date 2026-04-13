@@ -2,7 +2,9 @@
 return {
 	"ahmedkhalf/project.nvim",
 	dependencies = { "nvim-telescope/telescope.nvim" },
-	event = "VeryLazy",
+	keys = {
+		{ "<Leader>fp", "<cmd>Telescope projects<CR>", desc = "查找历史项目" },
+	},
 	config = function()
 		require("project_nvim").setup({
 			-- 根目录检测方式：先用 LSP，找不到再用 pattern 匹配
@@ -16,7 +18,7 @@ return {
 			},
 
 			-- 忽略这些 LSP 客户端的根目录检测（避免干扰）
-			ignore_lsp = { "null-ls", "copilot" },
+			ignore_lsp = { "copilot" },
 
 			-- 切换目录时不显示提示信息
 			silent_chdir = true,
@@ -31,8 +33,5 @@ return {
 
 		-- 接入 telescope
 		require("telescope").load_extension("projects")
-
-		-- 快捷键：用 telescope 浏览历史项目
-		vim.keymap.set("n", "<Leader>fp", "<cmd>Telescope projects<CR>", { desc = "查找历史项目" })
 	end,
 }

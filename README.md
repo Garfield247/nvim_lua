@@ -44,7 +44,7 @@ NVIM_APPNAME=Garfield247/nvim_lua/ nvim
 + [folke/todo-comments.nvim](https://dotfyle.com/plugins/folke/todo-comments.nvim)
 ### completion
 
-+ [hrsh7th/nvim-cmp](https://dotfyle.com/plugins/hrsh7th/nvim-cmp)
++ [saghen/blink.cmp](https://dotfyle.com/plugins/saghen/blink.cmp)
 ### cursorline
 
 + [yamatsum/nvim-cursorline](https://dotfyle.com/plugins/yamatsum/nvim-cursorline)
@@ -90,8 +90,6 @@ NVIM_APPNAME=Garfield247/nvim_lua/ nvim
 + [folke/which-key.nvim](https://dotfyle.com/plugins/folke/which-key.nvim)
 ### lsp
 
-+ [nvimtools/none-ls.nvim](https://dotfyle.com/plugins/nvimtools/none-ls.nvim)
-+ [onsails/lspkind.nvim](https://dotfyle.com/plugins/onsails/lspkind.nvim)
 + [roobert/action-hints.nvim](https://dotfyle.com/plugins/roobert/action-hints.nvim)
 + [neovim/nvim-lspconfig](https://dotfyle.com/plugins/neovim/nvim-lspconfig)
 + [hedyhli/outline.nvim](https://dotfyle.com/plugins/hedyhli/outline.nvim)
@@ -113,7 +111,6 @@ NVIM_APPNAME=Garfield247/nvim_lua/ nvim
 ### snippet
 
 + [rafamadriz/friendly-snippets](https://dotfyle.com/plugins/rafamadriz/friendly-snippets)
-+ [L3MON4D3/LuaSnip](https://dotfyle.com/plugins/L3MON4D3/LuaSnip)
 ### startup
 
 + [nvimdev/dashboard-nvim](https://dotfyle.com/plugins/nvimdev/dashboard-nvim)

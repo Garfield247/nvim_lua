@@ -4,6 +4,11 @@ return {
 	ft = { "go" },
 	dependencies = { "mfussenegger/nvim-dap" },
 	config = function()
+		local delve_path = vim.fn.stdpath("data") .. "/mason/bin/dlv"
+		if vim.fn.executable(delve_path) == 0 then
+			delve_path = vim.fn.exepath("dlv") or "dlv"
+		end
+
 		require("dap-go").setup({
 			dap_configurations = {
 				{
@@ -34,7 +39,7 @@ return {
 				},
 			},
 			delve = {
-				path                   = "dlv",
+				path                   = delve_path,
 				initialize_timeout_sec = 20,
 				port                   = "${port}",
 				args                   = {},

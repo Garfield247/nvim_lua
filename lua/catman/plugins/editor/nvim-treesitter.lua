@@ -11,6 +11,36 @@ return {
 		config = function()
 			-- 引入 nvim-treesitter
 			local treesitter = require("nvim-treesitter.configs")
+			local query = require("vim.treesitter.query")
+
+			-- 兼容 Neovim 0.12 下 markdown 注入查询偶发拿到异常节点的情况。
+			do
+				local opts = vim.fn.has("nvim-0.10") == 1 and { force = true, all = false } or true
+				local aliases = {
+					ex = "elixir",
+					pl = "perl",
+					sh = "bash",
+					ts = "typescript",
+					uxn = "uxntal",
+				}
+
+				query.add_directive("set-lang-from-info-string!", function(match, _, bufnr, pred, metadata)
+					local capture_id = pred[2]
+					local node = match[capture_id]
+					if not node then
+						return
+					end
+
+					local ok, text = pcall(vim.treesitter.get_node_text, node, bufnr)
+					if not ok or type(text) ~= "string" or text == "" then
+						return
+					end
+
+					local injection_alias = text:lower()
+					local filetype = vim.filetype.match({ filename = "a." .. injection_alias })
+					metadata["injection.language"] = filetype or aliases[injection_alias] or injection_alias
+				end, opts)
+			end
 
 			-- 配置 treesitter
 			treesitter.setup({ -- 语法高亮

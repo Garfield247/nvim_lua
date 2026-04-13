@@ -2,6 +2,18 @@
 vim.g.mapleader = " "
 
 local keymap = vim.keymap
+
+local function reload_nvim_config()
+	for name, _ in pairs(package.loaded) do
+		if name:match("^catman") then
+			package.loaded[name] = nil
+		end
+	end
+
+	dofile(vim.fn.stdpath("config") .. "/init.lua")
+	vim.notify("Neovim config reloaded", vim.log.levels.INFO, { title = "nvim" })
+end
+
 ---------------------
 -- 通用键位映射
 ---------------------
@@ -55,6 +67,7 @@ keymap.set("n", "<C-u>", "<C-u>zz", { desc = "上翻半页并居中" })
 keymap.set("n", "=", "Nzz", { desc = "上一个搜索结果" })
 keymap.set("n", "-", "nzz", { desc = "下一个搜索结果" })
 keymap.set("n", "<LEADER><CR>", ":nohlsearch<CR>", { desc = "清除搜索高亮" })
+keymap.set("n", "<LEADER>rr", reload_nvim_config, { desc = "重载 Neovim 配置" })
 ----------------------
 -- 插件键位
 ----------------------
