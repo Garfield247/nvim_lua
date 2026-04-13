@@ -51,6 +51,7 @@ opt.iskeyword:append("-") -- 将 string-string 视为一个单词
 
 opt.showcmd = true
 opt.wildmenu = true
+opt.shortmess:append("I") -- 关闭内置启动 intro，避免与 dashboard 启动页闪屏切换
 
 -- 体验优化
 opt.scrolloff = 8        -- 光标距屏幕边缘保留 8 行

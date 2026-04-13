@@ -1,0 +1,59 @@
+{
+  "info block": {
+    "prefix": "info",
+    "body": [
+      "info(",
+      "\ttitle: ${1:api}",
+      "\tdesc: ${2:api description}",
+      "\tauthor: ${3:garfield}",
+      "\temail: ${4:you@example.com}",
+      "\tversion: ${5:v1}",
+      ")"
+    ],
+    "description": "go-zero api info block"
+  },
+  "type block": {
+    "prefix": "type",
+    "body": [
+      "type ${1:User} {",
+      "\t${2:Name} ${3:string} `${4:json:\\\"name\\\"}`",
+      "}"
+    ],
+    "description": "go-zero api type block"
+  },
+  "service block": {
+    "prefix": "service",
+    "body": [
+      "service ${1:user-api} {",
+      "\t@handler ${2:getUser}",
+      "\tget /${3:users}/:${4:id} (${5:GetUserReq}) returns (${6:GetUserResp})",
+      "}"
+    ],
+    "description": "go-zero api service block"
+  },
+  "handler": {
+    "prefix": "handler",
+    "body": [
+      "@handler ${1:name}"
+    ],
+    "description": "go-zero api handler annotation"
+  },
+  "server block": {
+    "prefix": "server",
+    "body": [
+      "@server(",
+      "\tprefix: ${1:/api/v1}",
+      "\tgroup: ${2:default}",
+      "\tmiddleware: ${3:Auth}",
+      ")"
+    ],
+    "description": "go-zero api server annotation"
+  },
+  "route": {
+    "prefix": "route",
+    "body": [
+      "${1:get} /${2:path} (${3:Request}) returns (${4:Response})"
+    ],
+    "description": "go-zero api route"
+  }
+}

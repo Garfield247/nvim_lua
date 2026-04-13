@@ -7,6 +7,13 @@ return {
     local conform = require("conform")
 
     conform.setup({
+      formatters = {
+        goctl_api = {
+          command = "goctl",
+          args = { "api", "format", "--stdin" },
+          stdin = true,
+        },
+      },
       formatters_by_ft = {
         javascript = { "prettier" },
         typescript = { "prettier" },
@@ -21,6 +28,7 @@ return {
         graphql = { "prettier" },
         lua = { "stylua" },
         python = { "isort", "black" },
+        api = { "goctl_api" },
       },
       format_on_save = {
         lsp_fallback = true,

@@ -1,0 +1,11 @@
+{
+  "name": "catman-snippets",
+  "contributes": {
+    "snippets": [
+      {
+        "language": "api",
+        "path": "./api.json"
+      }
+    ]
+  }
+}

@@ -1,7 +1,8 @@
 -- dashboard-nvim：Neovim 启动页，显示自定义 banner、快捷操作和最近文件列表
 return {
 	"nvimdev/dashboard-nvim",
-	event = "VimEnter",
+	lazy = false,
+	priority = 1000,
 	config = function()
 		require("dashboard").setup({
 			-- config

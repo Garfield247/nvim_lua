@@ -8,6 +8,7 @@ return {
 
 		vim.keymap.set("n", "<Leader><Leader>i", "<cmd>IconPickerNormal<cr>", opts)
 		vim.keymap.set("n", "<Leader><Leader>y", "<cmd>IconPickerYank<cr>", opts) --> Yank the selected icon into register
-		vim.keymap.set("i", "<C-i>", "<cmd>IconPickerInsert<cr>", opts)
+		-- <C-i> 在大多数终端里会和 <Tab> 发送同一个按键码，避免劫持 Tab 缩进
+		vim.keymap.set("i", "<M-i>", "<cmd>IconPickerInsert<cr>", opts)
 	end,
 }
