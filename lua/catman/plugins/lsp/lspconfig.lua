@@ -184,9 +184,12 @@ return {
 		}
 
 		for server, server_opts in pairs(servers) do
-			vim.lsp.config(server, vim.tbl_deep_extend("force", {
-				capabilities = capabilities,
-			}, server_opts))
+			vim.lsp.config(
+				server,
+				vim.tbl_deep_extend("force", {
+					capabilities = capabilities,
+				}, server_opts)
+			)
 		end
 
 		vim.lsp.enable(vim.tbl_keys(servers))
