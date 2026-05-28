@@ -6,6 +6,8 @@ return {
 		-- 确保所有想要管理的主题都已安装
 		"catppuccin/nvim",
 		"bluz71/vim-nightfly-guicolors",
+		"folke/tokyonight.nvim",
+		"ellisonleao/gruvbox.nvim",
 	},
 	config = function()
 		require("themery").setup({
@@ -27,6 +29,22 @@ return {
 				{
 					name = "Catppuccin Mocha",
 					colorscheme = "catppuccin-mocha",
+				},
+				{
+					name = "Tokyo Night",
+					colorscheme = "tokyonight",
+				},
+				{
+					name = "Tokyo Night Storm",
+					colorscheme = "tokyonight-storm",
+				},
+				{
+					name = "Tokyo Night Moon",
+					colorscheme = "tokyonight-moon",
+				},
+				{
+					name = "Gruvbox",
+					colorscheme = "gruvbox",
 				},
 			},
 			livePreview = true, -- 开启实时预览
