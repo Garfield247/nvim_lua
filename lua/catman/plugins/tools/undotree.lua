@@ -9,7 +9,7 @@ return {
 	config = function()
 		vim.cmd([[
       set undofile
-      set undodir=~/.undodir
+      set undodir=~/.cache/undodir
 
     ]])
 	end,

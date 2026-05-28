@@ -2,7 +2,14 @@
 return {
 	"nvim-tree/nvim-tree.lua",
 	dependencies = { "nvim-tree/nvim-web-devicons" },
-	cmd = { "NvimTreeToggle", "NvimTreeFocus", "NvimTreeFindFile", "NvimTreeFindFileToggle", "NvimTreeCollapse", "NvimTreeRefresh" },
+	cmd = {
+		"NvimTreeToggle",
+		"NvimTreeFocus",
+		"NvimTreeFindFile",
+		"NvimTreeFindFileToggle",
+		"NvimTreeCollapse",
+		"NvimTreeRefresh",
+	},
 	keys = {
 		{ "<leader>ee", "<cmd>NvimTreeToggle<CR>", desc = "切换文件树" },
 		{ "<leader>ea", "<cmd>NvimTreeFindFileToggle<CR>", desc = "在当前文件位置打开/关闭文件树" },
@@ -34,6 +41,8 @@ return {
 			vim.keymap.set("n", "h", api.node.navigate.parent_close, opts("关闭目录", bufnr))
 			vim.keymap.set("n", "v", api.node.open.vertical, opts("垂直分屏打开", bufnr))
 			vim.keymap.set("n", "s", api.node.open.horizontal, opts("水平分屏打开", bufnr))
+			vim.keymap.set({ "n", "x" }, "d", api.fs.trash, opts("移动到回收站", bufnr))
+			vim.keymap.set({ "n", "x" }, "<Del>", api.fs.trash, opts("移动到回收站", bufnr))
 			vim.keymap.set("n", "i", api.tree.toggle_gitignore_filter, opts("切换 Git 忽略过滤", bufnr))
 			vim.keymap.set("n", ".", api.tree.toggle_hidden_filter, opts("切换隐藏文件过滤", bufnr))
 			vim.keymap.set("n", "?", api.tree.toggle_help, opts("帮助", bufnr))

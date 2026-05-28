@@ -23,6 +23,21 @@ return {
 			"svelte",
 		}
 
+		local mason_packages_by_lsp_server = {
+			rust_analyzer = "rust-analyzer",
+			ts_ls = "typescript-language-server",
+			html = "html-lsp",
+			cssls = "css-lsp",
+			lua_ls = "lua-language-server",
+			emmet_ls = "emmet-ls",
+			pyright = "pyright",
+			gopls = "gopls",
+			tailwindcss = "tailwindcss-language-server",
+			prismals = "prisma-language-server",
+			graphql = "graphql-language-service-cli",
+			svelte = "svelte-language-server",
+		}
+
 		local extra_tools = {
 			"prettier",
 			"stylua",
@@ -40,7 +55,11 @@ return {
 
 		local ensure_installed = {}
 		local seen = {}
-		for _, package in ipairs(vim.list_extend(vim.deepcopy(lsp_servers), extra_tools)) do
+		local lsp_packages = vim.tbl_map(function(server)
+			return mason_packages_by_lsp_server[server] or server
+		end, lsp_servers)
+
+		for _, package in ipairs(vim.list_extend(lsp_packages, extra_tools)) do
 			if not seen[package] then
 				seen[package] = true
 				table.insert(ensure_installed, package)
