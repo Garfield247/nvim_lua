@@ -71,6 +71,7 @@ return {
 			{ "<leader>n", group = "测试" },
 			{ "<leader>r", group = "LSP / 运行" },
 			{ "<leader>t", group = "终端" },
+			{ "<leader>th", desc = "主题管理器" },
 			{ "<leader>u", group = "界面 / UI" },
 			{ "<leader>x", group = "纠错 (Trouble)" },
 			{ "<leader><leader>", group = "插入 / 选择器" },
