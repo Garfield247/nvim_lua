@@ -28,12 +28,8 @@ return {
 					name = "Catppuccin Mocha",
 					colorscheme = "catppuccin-mocha",
 				},
-				"tokyonight", -- 如果你以后安装了可以直接加在这里
 			},
 			livePreview = true, -- 开启实时预览
 		})
-
-		-- 设置快捷键
-		vim.keymap.set("n", "<leader>th", ":Themery<CR>", { desc = "切换主题 (Themery)" })
 	end,
 }
