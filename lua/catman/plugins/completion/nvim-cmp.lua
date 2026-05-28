@@ -10,13 +10,11 @@ return {
 		"L3MON4D3/LuaSnip",
 		"saadparwaiz1/cmp_luasnip",
 		"rafamadriz/friendly-snippets",
-		"onsails/lspkind.nvim",
 		"hrsh7th/cmp-calc",
 	},
 	config = function()
 		local cmp = require("cmp")
 		local luasnip = require("luasnip")
-		local lspkind = require("lspkind")
 
 		require("luasnip.loaders.from_vscode").lazy_load()
 
@@ -92,20 +90,55 @@ return {
 			}),
 			formatting = {
 				fields = { "kind", "abbr", "menu" },
-				format = lspkind.cmp_format({
-					mode = "symbol_text", -- 显示图标和文字
-					maxwidth = 50,
-					ellipsis_char = "...",
-					show_labelDetails = true,
-					menu = {
-						buffer = "[Buf]",
-						nvim_lsp = "[LSP]",
-						luasnip = "[Snip]",
-						nvim_lua = "[Lua]",
-						path = "[Path]",
-						calc = "[Calc]",
-					},
-				}),
+				format = function(entry, vim_item)
+					-- 自定义图标映射（Nerd Font v3）
+					local kind_icons = {
+						Text = "󰉿",
+						Method = "󰆧",
+						Function = "󰊕",
+						Constructor = "",
+						Field = "󰜢",
+						Variable = "󰀫",
+						Class = "󰠱",
+						Interface = "",
+						Module = "",
+						Property = "󰜢",
+						Unit = "󰑭",
+						Value = "󰎠",
+						Enum = "",
+						Keyword = "󰌋",
+						Snippet = "",
+						Color = "󰏘",
+						File = "󰈙",
+						Reference = "󰈇",
+						Folder = "󰉋",
+						EnumMember = "",
+						Constant = "󰏿",
+						Struct = "󰙅",
+						Event = "",
+						Operator = "󰆕",
+						TypeParameter = "󰏿",
+					}
+
+					-- 合并图标和类型文字到 kind 字段
+					local kind_name = vim_item.kind
+					local icon = kind_icons[kind_name] or ""
+					vim_item.kind = string.format("%s %s", icon, kind_name)
+
+					-- 设置右侧来源信息（带图标）
+					local source_map = {
+						buffer = "󰦨  Buf",
+						nvim_lsp = "󰒋  LSP",
+						luasnip = "󰩫  Snip",
+						nvim_lua = "󰢱  Lua",
+						path = "󰉖  Path",
+						calc = "󰃬  Calc",
+					}
+					local icon_source = source_map[entry.source.name] or entry.source.name
+					vim_item.menu = string.format("  [%s]", icon_source)
+
+					return vim_item
+				end,
 			},
 			performance = {
 				fetching_timeout = 500,
