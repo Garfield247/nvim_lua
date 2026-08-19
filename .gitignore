@@ -1,0 +1,7 @@
+# Logs & Temp
+.nvimlog
+nvim.log
+
+# Vim/Neovim temporary files
+*.swp
+*.swo

@@ -4,6 +4,8 @@ vim.filetype.add({
 	},
 	extension = {
 		api = "api",
+		gotmpl = "gotmpl",
+		gowork = "gowork",
 	},
 	pattern = {
 		[".*%.gotmpl"] = "gotmpl",
