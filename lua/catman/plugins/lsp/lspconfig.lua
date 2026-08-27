@@ -2,13 +2,11 @@ return {
 	"neovim/nvim-lspconfig",
 	event = { "BufReadPre", "BufNewFile" },
 	dependencies = {
-		"hrsh7th/cmp-nvim-lsp",
+		"saghen/blink.cmp",
 		{ "antosha417/nvim-lsp-file-operations", config = true },
-		"nvim-telescope/telescope.nvim",
 	},
 	config = function()
-		local cmp_nvim_lsp = require("cmp_nvim_lsp")
-		local capabilities = cmp_nvim_lsp.default_capabilities()
+		local capabilities = require("blink.cmp").get_lsp_capabilities()
 		local svelte_group = vim.api.nvim_create_augroup("CatmanSvelteWatch", { clear = true })
 		local lsp_attach_group = vim.api.nvim_create_augroup("CatmanLspAttach", { clear = true })
 
@@ -183,6 +181,26 @@ return {
 							end
 						end,
 					})
+				end,
+			},
+			basedpyright = {
+				root_dir = function(bufnr, on_dir)
+					on_dir(detect_python_root(bufnr))
+				end,
+				settings = {
+					basedpyright = {
+						analysis = {
+							autoSearchPaths = true,
+							diagnosticMode = "openFilesOnly",
+							useLibraryCodeForTypes = true,
+							typeCheckingMode = "standard",
+						},
+					},
+				},
+			},
+			ruff = {
+				root_dir = function(bufnr, on_dir)
+					on_dir(detect_python_root(bufnr))
 				end,
 			},
 			pyright = {
