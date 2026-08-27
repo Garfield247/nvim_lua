@@ -1,8 +1,8 @@
--- blink.cmp：Neovim 0.12 官方强烈推荐的基于 Rust 构建的超高性能补全引擎（替代旧版 nvim-cmp）
+-- blink.cmp：Neovim 0.12 推荐的原生超高性能补全引擎（带现代 UI 视觉美化方案）
 return {
 	"saghen/blink.cmp",
-	dependencies = "rafamadriz/friendly-snippets", -- 提供通用的 Code Snippets 片段集
-	version = "*", -- 始终跟随最新稳定版发布
+	dependencies = "rafamadriz/friendly-snippets",
+	version = "*",
 
 	---@module 'blink.cmp'
 	---@type blink.cmp.Config
@@ -10,65 +10,104 @@ return {
 		-- 快捷键设置：支持选择、接受、文档滚动及 Snippet 展开
 		keymap = {
 			preset = "default",
-			["<C-space>"] = { "show", "show_documentation", "hide_documentation" }, -- 手动唤起/切换文档
-			["<C-e>"] = { "hide" }, -- 取消并隐藏补全弹窗
-			["<CR>"] = { "accept", "fallback" }, -- 回车确认补全项
-			["<Tab>"] = { "select_next", "snippet_forward", "fallback" }, -- Tab 键向下选择或展开 Snippet
-			["<S-Tab>"] = { "select_prev", "snippet_backward", "fallback" }, -- Shift+Tab 键向上选择
-			["<C-k>"] = { "select_prev", "fallback" }, -- Ctrl-k 向上选择补全项
-			["<C-j>"] = { "select_next", "fallback" }, -- Ctrl-j 向下选择补全项
-			["<C-b>"] = { "scroll_documentation_up", "fallback" }, -- 向上滚动浮动文档窗口
-			["<C-f>"] = { "scroll_documentation_down", "fallback" }, -- 向下滚动浮动文档窗口
+			["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
+			["<C-e>"] = { "hide" },
+			["<CR>"] = { "accept", "fallback" },
+			["<Tab>"] = { "select_next", "snippet_forward", "fallback" },
+			["<S-Tab>"] = { "select_prev", "snippet_backward", "fallback" },
+			["<C-k>"] = { "select_prev", "fallback" },
+			["<C-j>"] = { "select_next", "fallback" },
+			["<C-b>"] = { "scroll_documentation_up", "fallback" },
+			["<C-f>"] = { "scroll_documentation_down", "fallback" },
 		},
 
-		-- 外观设定：使用 Nerd Font 字体渲染图标
+		-- 外观美化与 Nerd Font v3 图标映射集
 		appearance = {
-			use_nvim_cmp_as_default = true, -- 回退兼容 nvim-cmp 的 Highlight 组
+			use_nvim_cmp_as_default = true,
 			nerd_font_variant = "mono",
+			kind_icons = {
+				Text = "󰉿",
+				Method = "󰆧",
+				Function = "󰊕",
+				Constructor = "",
+				Field = "󰜢",
+				Variable = "󰀫",
+				Class = "󰠱",
+				Interface = "",
+				Module = "",
+				Property = "󰜢",
+				Unit = "󰑭",
+				Value = "󰎠",
+				Enum = "",
+				Keyword = "󰌋",
+				Snippet = "",
+				Color = "󰏘",
+				File = "󰈙",
+				Reference = "󰈇",
+				Folder = "󰉋",
+				EnumMember = "",
+				Constant = "󰏿",
+				Struct = "󰙅",
+				Event = "",
+				Operator = "󰆕",
+				TypeParameter = "󰏿",
+			},
 		},
 
-		-- 补全数据源集合：聚合 LSP、路径、代码片段及当前缓冲区词汇
+		-- 补全数据源集合
 		sources = {
 			default = { "lsp", "path", "snippets", "buffer" },
 		},
 
-		-- 补全菜单与浮动窗口配置
+		-- 补全菜单与美化绘制配置
 		completion = {
 			menu = {
-				auto_show = true, -- 打字时自动弹出补全菜单
-				border = "rounded", -- 圆角边框设计
+				auto_show = true,
+				border = "rounded", -- 精致圆角边框
+				winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:PmenuSel,Search:None",
 				draw = {
-					treesitter = { "lsp" }, -- 启用 Treesitter 语法高亮提升预览体验
+					columns = {
+						{ "kind_icon", "kind", gap = 1 },
+						{ "label", "label_description", gap = 1 },
+					},
+					treesitter = { "lsp" },
 				},
 			},
 			documentation = {
-				auto_show = true, -- 选择补全项时自动显示详细帮助文档
-				auto_show_delay_ms = 200, -- 延迟 200ms 防止快速光标移动时闪烁
-				window = { border = "rounded" },
+				auto_show = true,
+				auto_show_delay_ms = 150,
+				window = {
+					border = "rounded",
+					winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:PmenuSel,Search:None",
+				},
 			},
 			ghost_text = {
-				enabled = true, -- 启用 IDE 风格的灰色行内虚拟文本预览
+				enabled = true, -- IDE 风格暗色虚线行内预览
 			},
 		},
 
-		-- 函数签名悬浮提示（输入参数时自动显示参数类型）
+		-- 函数签名悬浮提示
 		signature = {
 			enabled = true,
-			window = { border = "rounded" },
+			window = {
+				border = "rounded",
+				winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,Search:None",
+			},
 		},
 
-		-- 命令行 (Cmdline / :) 补全独立配置
+		-- 命令行 (Cmdline / :) 补全与美化配置
 		cmdline = {
 			enabled = true,
 			completion = {
 				menu = {
-					auto_show = true, -- 在命令行输入 : 命令时秒级自动弹出菜单
+					auto_show = true,
+					border = "rounded",
 				},
 			},
 			keymap = {
 				preset = "default",
-				["<C-j>"] = { "select_next", "fallback" }, -- Cmdline 模式下用 Ctrl-j 向下选择
-				["<C-k>"] = { "select_prev", "fallback" }, -- Cmdline 模式下用 Ctrl-k 向上选择
+				["<C-j>"] = { "select_next", "fallback" },
+				["<C-k>"] = { "select_prev", "fallback" },
 				["<Tab>"] = { "select_next", "fallback" },
 				["<S-Tab>"] = { "select_prev", "fallback" },
 				["<CR>"] = { "accept", "fallback" },
