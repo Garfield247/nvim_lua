@@ -9,6 +9,7 @@ return {
 		dashboard = {
 			enabled = true,
 			preset = {
+				-- 招牌猫咪与 Neovim 组合 ASCII Header
 				header = [[
 ||=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=||
 ||    ______               __      __       __                             ||
@@ -32,6 +33,22 @@ return {
 ||                                                                         ||
 ||=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=||
 ]],
+				-- 启动页中文快捷操作选项
+				keys = {
+					{ icon = " ", key = "f", desc = "查找文件", action = ":lua Snacks.dashboard.pick('files')" },
+					{ icon = " ", key = "n", desc = "新建空白缓冲区", action = ":ene | startinsert" },
+					{ icon = " ", key = "g", desc = "全局搜索字符串", action = ":lua Snacks.dashboard.pick('live_grep')" },
+					{ icon = " ", key = "r", desc = "最近打开历史文件", action = ":lua Snacks.dashboard.pick('oldfiles')" },
+					{
+						icon = " ",
+						key = "c",
+						desc = "打开 Neovim 配置文件",
+						action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})",
+					},
+					{ icon = " ", key = "s", desc = "恢复上次会话", section = "session" },
+					{ icon = "󰒲 ", key = "l", desc = "Lazy 插件管理", action = ":Lazy" },
+					{ icon = " ", key = "q", desc = "退出 Neovim", action = ":qa" },
+				},
 			},
 		},
 		indent = { enabled = true }, -- 缩进参考线高亮
