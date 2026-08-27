@@ -52,6 +52,35 @@ return {
 			return name ~= "" and vim.fs.dirname(name) or vim.uv.cwd()
 		end
 
+		local function get_python_interpreter(root_dir)
+			if not root_dir or root_dir == "" then
+				root_dir = vim.uv.cwd()
+			end
+
+			-- 1. 优先使用项目根目录下的 .venv (uv 生成)
+			local venv_path = vim.fs.joinpath(root_dir, ".venv", "bin", "python")
+			if vim.fn.executable(venv_path) == 1 then
+				return venv_path
+			end
+
+			-- 2. 检查项目根目录下的 venv
+			local alt_venv_path = vim.fs.joinpath(root_dir, "venv", "bin", "python")
+			if vim.fn.executable(alt_venv_path) == 1 then
+				return alt_venv_path
+			end
+
+			-- 3. 使用当前 Shell 激活的 VIRTUAL_ENV
+			if vim.env.VIRTUAL_ENV then
+				local env_python = vim.fs.joinpath(vim.env.VIRTUAL_ENV, "bin", "python")
+				if vim.fn.executable(env_python) == 1 then
+					return env_python
+				end
+			end
+
+			-- 4. 使用 pyenv 或全局默认 python3
+			return vim.fn.exepath("python3") or "python"
+		end
+
 		local function restart_lsp(bufnr)
 			vim.lsp.stop_client(vim.lsp.get_clients({ bufnr = bufnr }))
 			vim.defer_fn(function()
@@ -185,6 +214,10 @@ return {
 				root_dir = function(bufnr, on_dir)
 					on_dir(detect_python_root(bufnr))
 				end,
+				before_init = function(_, config)
+					config.settings.python = config.settings.python or {}
+					config.settings.python.pythonPath = get_python_interpreter(config.root_dir)
+				end,
 				settings = {
 					basedpyright = {
 						analysis = {
@@ -204,6 +237,10 @@ return {
 			pyright = {
 				root_dir = function(bufnr, on_dir)
 					on_dir(detect_python_root(bufnr))
+				end,
+				before_init = function(_, config)
+					config.settings.python = config.settings.python or {}
+					config.settings.python.pythonPath = get_python_interpreter(config.root_dir)
 				end,
 				settings = {
 					pyright = { autoImportCompletion = true },
