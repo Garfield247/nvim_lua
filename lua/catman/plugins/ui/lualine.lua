@@ -52,6 +52,7 @@ return {
 
 		local python_env_cache = {}
 
+		-- 自定义状态栏组件：动态提取 Python 版本号与当前激活的虚拟环境名称 (带缓存)
 		local function get_python_env()
 			if vim.bo.filetype ~= "python" then
 				return ""

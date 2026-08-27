@@ -1,15 +1,18 @@
+-- nvim-lspconfig：Neovim 0.12 官方推荐 Native LSP 启动与配置模块（利用 vim.lsp.config & vim.lsp.enable）
 return {
 	"neovim/nvim-lspconfig",
 	event = { "BufReadPre", "BufNewFile" },
 	dependencies = {
-		"saghen/blink.cmp",
-		{ "antosha417/nvim-lsp-file-operations", config = true },
+		"saghen/blink.cmp", -- 集成 blink.cmp 的 Capabilities 能力扩展
+		{ "antosha417/nvim-lsp-file-operations", config = true }, -- 开启文件重命名时自动同步重构 LSP Import
 	},
 	config = function()
+		-- 继承并加载 blink.cmp 的补全 Capabilities 特性
 		local capabilities = require("blink.cmp").get_lsp_capabilities()
 		local svelte_group = vim.api.nvim_create_augroup("CatmanSvelteWatch", { clear = true })
 		local lsp_attach_group = vim.api.nvim_create_augroup("CatmanLspAttach", { clear = true })
 
+		-- 辅助函数：缓冲区局部按键绑定
 		local function buf_map(bufnr, mode, lhs, rhs, desc)
 			vim.keymap.set(mode, lhs, rhs, {
 				buffer = bufnr,
@@ -19,6 +22,7 @@ return {
 			})
 		end
 
+		-- Python 专属：项目根目录动态探测器（兼容 uv, pyproject, .venv, pyenv）
 		local function detect_python_root(bufnr)
 			local root = vim.fs.root(bufnr, {
 				"uv.lock",
@@ -52,6 +56,7 @@ return {
 			return name ~= "" and vim.fs.dirname(name) or vim.uv.cwd()
 		end
 
+		-- Python 专属：解释器可执行文件精确探针（按 uv -> 传统 venv -> 激活环境 -> pyenv 顺序探测）
 		local function get_python_interpreter(root_dir)
 			if not root_dir or root_dir == "" then
 				root_dir = vim.uv.cwd()

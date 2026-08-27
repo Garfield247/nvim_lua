@@ -1,41 +1,42 @@
--- snacks.nvim：全能型轻量 UI 与辅助工具库
+-- snacks.nvim：Folke 开发的全能型超级轻量 UI 框架与核心辅助工具箱（替代零散第三方 UI 插件）
 return {
 	"folke/snacks.nvim",
-	priority = 1000,
+	priority = 1000, -- 最高优先级，确保在启动序列早期加载以接管 UI 基础设施
 	lazy = false,
 	---@type snacks.Config
 	opts = {
-		bigfile = { enabled = true },
-		dashboard = { enabled = true },
-		indent = { enabled = true },
-		input = { enabled = true },
-		notifier = { enabled = true, timeout = 3000 },
-		quickfile = { enabled = true },
-		scroll = { enabled = true },
-		statuscolumn = { enabled = true },
-		words = { enabled = true },
+		bigfile = { enabled = true }, -- 超大文件保护机制（自动禁用高耗能语法高亮/LSP，防止卡死）
+		dashboard = { enabled = true }, -- 现代启动首页 Dashboard
+		indent = { enabled = true }, -- 缩进参考线高亮
+		input = { enabled = true }, -- 接入原生的 vim.ui.input 输入弹窗 UI
+		notifier = { enabled = true, timeout = 3000 }, -- 现代化右下角 Notification 通知弹窗
+		quickfile = { enabled = true }, -- 极速渲染空缓冲区与只读文件
+		scroll = { enabled = true }, -- 平滑滚动动画
+		statuscolumn = { enabled = true }, -- 整合的左侧状态列（显示行号、Git 变更、折叠标记）
+		words = { enabled = true }, -- 自动高亮当前光标下相同的单词标记
 	},
+	-- 快捷键设置
 	keys = {
 		{
 			"<leader>n",
 			function()
 				Snacks.notifier.show_history()
 			end,
-			desc = "显示通知历史 (Snacks)",
+			desc = "查看历史 Notification 通知记录 (Snacks)",
 		},
 		{
 			"<leader>un",
 			function()
 				Snacks.notifier.hide()
 			end,
-			desc = "关闭所有通知 (Snacks)",
+			desc = "关闭并隐藏当前所有的通知弹窗 (Snacks)",
 		},
 		{
 			"<leader>gB",
 			function()
 				Snacks.gitbrowse()
 			end,
-			desc = "在浏览器中打开 Git 仓 (Snacks)",
+			desc = "在浏览器中直接打开当前文件的 Git 仓位置 (Snacks)",
 		},
 	},
 }

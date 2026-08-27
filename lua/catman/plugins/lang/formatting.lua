@@ -27,7 +27,9 @@ return {
         markdown = { "prettier" },
         graphql = { "prettier" },
         lua = { "stylua" },
+        -- Python 格式化：优先调起极速 ruff_format，系统缺失 ruff 时自动平滑退避使用 isort/black，止于首个可用工具 (stop_after_first)
         python = { "ruff_format", "isort", "black", stop_after_first = true },
+        -- Go 格式化：自动管理 import 并进行 gofmt 格式化
         go = { "goimports", "gofmt" },
         api = { "goctl_api" },
       },
