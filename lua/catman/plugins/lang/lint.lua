@@ -1,7 +1,7 @@
 -- nvim-lint：异步高性能代码 Lint 检查框架
 return {
 	"mfussenegger/nvim-lint",
-	event = { "BufReadPost", "BufWritePost", "BufInsertLeave" },
+	event = { "BufReadPost", "BufWritePost", "InsertLeave" },
 	config = function()
 		local lint = require("lint")
 
