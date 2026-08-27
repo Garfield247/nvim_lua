@@ -85,16 +85,14 @@ return {
 					return
 				end
 
-				local ok, telescope_builtin = pcall(require, "telescope.builtin")
+				local ok, fzf_lua = pcall(require, "fzf-lua")
 				local bufnr = args.buf
 				local filetype = vim.bo[bufnr].filetype
-				local references = ok and telescope_builtin.lsp_references or vim.lsp.buf.references
-				local definitions = ok and telescope_builtin.lsp_definitions or vim.lsp.buf.definition
-				local implementations = ok and telescope_builtin.lsp_implementations or vim.lsp.buf.implementation
-				local type_definitions = ok and telescope_builtin.lsp_type_definitions or vim.lsp.buf.type_definition
-				local diagnostics = ok and function()
-					telescope_builtin.diagnostics({ bufnr = 0 })
-				end or vim.diagnostic.setloclist
+				local references = ok and fzf_lua.lsp_references or vim.lsp.buf.references
+				local definitions = ok and fzf_lua.lsp_definitions or vim.lsp.buf.definition
+				local implementations = ok and fzf_lua.lsp_finder or vim.lsp.buf.implementation
+				local type_definitions = ok and fzf_lua.lsp_typedefs or vim.lsp.buf.type_definition
+				local diagnostics = ok and fzf_lua.diagnostics_document or vim.diagnostic.setloclist
 
 				buf_map(bufnr, "n", "gR", references, "显示引用")
 				buf_map(bufnr, "n", "gD", vim.lsp.buf.declaration, "跳转声明")
