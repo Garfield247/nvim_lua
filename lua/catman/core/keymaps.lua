@@ -72,3 +72,9 @@ keymap.set("n", "<LEADER>rr", reload_nvim_config, { desc = "重载 Neovim 配置
 -- 插件键位
 ----------------------
 keymap.set("n", "<LEADER>vb", ":ViewInBrowser<CR>", { desc = "在浏览器中打开" })
+
+----------------------
+-- 命令行模式 (Cmdline / Wildmenu) 补全键位
+----------------------
+keymap.set("c", "<C-j>", 'pumvisible() ? "\\<C-n>" : "\\<C-j>"', { expr = true, noremap = true, desc = "命令行补全选择下一个" })
+keymap.set("c", "<C-k>", 'pumvisible() ? "\\<C-p>" : "\\<C-k>"', { expr = true, noremap = true, desc = "命令行补全选择上一个" })

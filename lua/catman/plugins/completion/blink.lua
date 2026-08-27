@@ -50,6 +50,17 @@ return {
 			enabled = true,
 			window = { border = "rounded" },
 		},
+
+		cmdline = {
+			enabled = true,
+			keymap = {
+				preset = "default",
+				["<C-j>"] = { "select_next", "fallback" },
+				["<C-k>"] = { "select_prev", "fallback" },
+				["<Tab>"] = { "select_next", "fallback" },
+				["<S-Tab>"] = { "select_prev", "fallback" },
+			},
+		},
 	},
 	opts_extend = { "sources.default" },
 }
