@@ -1,4 +1,4 @@
--- flash.nvim：极速光标与 Treesitter 选择（不覆盖原生 f/t/F/T 移动）
+-- flash.nvim：极速光标与 Treesitter 选择（不占用大写 S 保存键）
 return {
 	"folke/flash.nvim",
 	event = "VeryLazy",
@@ -6,7 +6,7 @@ return {
 	opts = {
 		modes = {
 			char = {
-				enabled = false, -- 显式保留原生 f, t, F, T 键位，不改变基础 Vim 体验
+				enabled = false, -- 显式保留原生 f, t, F, T 移动
 			},
 		},
 	},
@@ -17,15 +17,15 @@ return {
 			function()
 				require("flash").jump()
 			end,
-			desc = "Flash 跳转",
+			desc = "Flash 极速跳转",
 		},
 		{
-			"S",
+			"<leader>st",
 			mode = { "n", "x", "o" },
 			function()
 				require("flash").treesitter()
 			end,
-			desc = "Flash Treesitter 选择",
+			desc = "Flash Treesitter 区域选择",
 		},
 		{
 			"r",
