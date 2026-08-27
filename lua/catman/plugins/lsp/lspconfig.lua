@@ -89,7 +89,7 @@ return {
 				local bufnr = args.buf
 				local filetype = vim.bo[bufnr].filetype
 				local references = ok and fzf_lua.lsp_references or vim.lsp.buf.references
-				local definitions = ok and fzf_lua.lsp_definitions or vim.lsp.buf.definition
+				local definitions = vim.lsp.buf.definition
 				local implementations = ok and fzf_lua.lsp_finder or vim.lsp.buf.implementation
 				local type_definitions = ok and fzf_lua.lsp_typedefs or vim.lsp.buf.type_definition
 				local diagnostics = ok and fzf_lua.diagnostics_document or vim.diagnostic.setloclist
