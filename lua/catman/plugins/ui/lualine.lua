@@ -50,6 +50,55 @@ return {
 			},
 		}
 
+		local python_env_cache = {}
+
+		local function get_python_env()
+			if vim.bo.filetype ~= "python" then
+				return ""
+			end
+
+			local buf = vim.api.nvim_get_current_buf()
+			if python_env_cache[buf] then
+				return python_env_cache[buf]
+			end
+
+			local root = vim.fs.root(buf, { "uv.lock", "pyproject.toml", ".venv", "venv", ".git" }) or vim.uv.cwd()
+			local venv_name = ""
+			local python_bin = ""
+
+			local venv_dir = vim.fs.joinpath(root, ".venv")
+			if vim.fn.isdirectory(venv_dir) == 1 then
+				venv_name = ".venv"
+				python_bin = vim.fs.joinpath(venv_dir, "bin", "python")
+			else
+				local alt_venv_dir = vim.fs.joinpath(root, "venv")
+				if vim.fn.isdirectory(alt_venv_dir) == 1 then
+					venv_name = "venv"
+					python_bin = vim.fs.joinpath(alt_venv_dir, "bin", "python")
+				elseif vim.env.VIRTUAL_ENV then
+					venv_name = vim.fs.basename(vim.env.VIRTUAL_ENV)
+					python_bin = vim.fs.joinpath(vim.env.VIRTUAL_ENV, "bin", "python")
+				end
+			end
+
+			if python_bin == "" or vim.fn.executable(python_bin) ~= 1 then
+				python_bin = vim.fn.exepath("python3") or "python"
+			end
+
+			local version_out = vim.fn.system({ python_bin, "--version" })
+			local version = version_out:match("Python (%d+%.%d+%.%d+)") or version_out:match("Python (%d+%.%d+)") or ""
+
+			local result = ""
+			if venv_name ~= "" then
+				result = string.format(" %s (%s)", version, venv_name)
+			elseif version ~= "" then
+				result = string.format(" %s", version)
+			end
+
+			python_env_cache[buf] = result
+			return result
+		end
+
 		-- 使用自定义主题配置 lualine
 		lualine.setup({
 			options = {
@@ -57,6 +106,13 @@ return {
 			},
 			sections = {
 				lualine_x = {
+					{
+						get_python_env,
+						cond = function()
+							return vim.bo.filetype == "python"
+						end,
+						color = { fg = "#38bdf8", gui = "bold" },
+					},
 					require("action-hints").statusline,
 					{
 						lazy_status.updates,
