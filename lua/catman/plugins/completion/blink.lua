@@ -1,4 +1,4 @@
--- blink.cmp：Neovim 0.12 推荐的超级原生高性能补全引擎
+-- blink.cmp：Neovim 0.12 推荐的原生高性能自动补全引擎
 return {
 	"saghen/blink.cmp",
 	dependencies = "rafamadriz/friendly-snippets",
@@ -30,10 +30,8 @@ return {
 		},
 
 		completion = {
-			accept = {
-				auto_brackets = { enabled = true },
-			},
 			menu = {
+				auto_show = true,
 				border = "rounded",
 				draw = {
 					treesitter = { "lsp" },
@@ -44,6 +42,9 @@ return {
 				auto_show_delay_ms = 200,
 				window = { border = "rounded" },
 			},
+			ghost_text = {
+				enabled = true,
+			},
 		},
 
 		signature = {
@@ -53,12 +54,18 @@ return {
 
 		cmdline = {
 			enabled = true,
+			completion = {
+				menu = {
+					auto_show = true,
+				},
+			},
 			keymap = {
 				preset = "default",
 				["<C-j>"] = { "select_next", "fallback" },
 				["<C-k>"] = { "select_prev", "fallback" },
 				["<Tab>"] = { "select_next", "fallback" },
 				["<S-Tab>"] = { "select_prev", "fallback" },
+				["<CR>"] = { "accept", "fallback" },
 			},
 		},
 	},
