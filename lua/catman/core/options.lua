@@ -23,6 +23,7 @@ opt.wrap = true -- 启用自动换行
 opt.incsearch = true
 opt.ignorecase = true -- 搜索时忽略大小写
 opt.smartcase = true -- 若搜索含大写则区分大小写
+opt.inccommand = "split" -- 开启 Sublime 级的单文件替换实时预览（在分屏中边打字边动态展示替换前后效果）
 
 -- 光标行
 opt.cursorline = true -- 高亮当前光标所在行
