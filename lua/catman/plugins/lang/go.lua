@@ -11,22 +11,7 @@ return {
 			return
 		end
 
-		-- -- Run gofmt on save
-		-- vim.api.nvim_create_autocmd("BufWritePre", {
-		-- 	pattern = "*.go",
-		-- 	callback = function()
-		-- 		require("go.format").gofmt()
-		-- 	end,
-		-- 	group = format_sync_grp,
-		-- })
-		local format_sync_grp = vim.api.nvim_create_augroup("GoFormat", {})
-		vim.api.nvim_create_autocmd("BufWritePre", {
-			pattern = "*.go",
-			callback = function()
-				require("go.format").goimport()
-			end,
-			group = format_sync_grp,
-		})
+		-- 格式化统一由 conform.nvim 处理，此处保持 setup 即可
 		-- enable go
 		go.setup({
 			lsp_cfg = false,      -- 由 lspconfig.lua 统一管理 gopls，避免冲突
