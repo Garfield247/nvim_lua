@@ -9,8 +9,8 @@ return {
 	config = function()
 		-- 继承并加载 blink.cmp 的补全 Capabilities 特性
 		local capabilities = require("blink.cmp").get_lsp_capabilities()
-		local svelte_group = vim.api.nvim_create_augroup("CatmanSvelteWatch", { clear = true })
-		local lsp_attach_group = vim.api.nvim_create_augroup("CatmanLspAttach", { clear = true })
+		local svelte_group = vim.api.nvim_create_augroup("GarfieldSvelteWatch", { clear = true })
+		local lsp_attach_group = vim.api.nvim_create_augroup("GarfieldLspAttach", { clear = true })
 
 		-- 辅助函数：缓冲区局部按键绑定
 		local function buf_map(bufnr, mode, lhs, rhs, desc)

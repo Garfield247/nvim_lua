@@ -5,7 +5,7 @@ local keymap = vim.keymap
 
 local function reload_nvim_config()
 	for name, _ in pairs(package.loaded) do
-		if name:match("^catman") then
+		if name:match("^garfield") then
 			package.loaded[name] = nil
 		end
 	end

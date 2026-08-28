@@ -50,7 +50,7 @@ return {
 
 		-- 主题切换后重新应用高亮，避免箭头颜色丢失。
 		vim.api.nvim_create_autocmd("ColorScheme", {
-			group = vim.api.nvim_create_augroup("CatmanNvimTreeHighlights", { clear = true }),
+			group = vim.api.nvim_create_augroup("GarfieldNvimTreeHighlights", { clear = true }),
 			callback = function()
 				vim.api.nvim_set_hl(0, "NvimTreeFolderArrowClosed", { fg = "#3FC5FF" })
 				vim.api.nvim_set_hl(0, "NvimTreeFolderArrowOpen", { fg = "#3FC5FF" })

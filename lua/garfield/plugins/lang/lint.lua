@@ -12,7 +12,7 @@ return {
 		}
 
 		-- 自动命令组：在进入文件、保存文件或退出插入模式时异步触发校验
-		local lint_augroup = vim.api.nvim_create_augroup("CatmanNvimLint", { clear = true })
+		local lint_augroup = vim.api.nvim_create_augroup("GarfieldNvimLint", { clear = true })
 		vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
 			group = lint_augroup,
 			callback = function()
