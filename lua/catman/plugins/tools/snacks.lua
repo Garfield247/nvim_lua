@@ -37,8 +37,18 @@ return {
 				keys = {
 					{ icon = " ", key = "f", desc = "查找文件", action = ":lua Snacks.dashboard.pick('files')" },
 					{ icon = " ", key = "n", desc = "新建空白缓冲区", action = ":ene | startinsert" },
-					{ icon = " ", key = "g", desc = "全局搜索字符串", action = ":lua Snacks.dashboard.pick('live_grep')" },
-					{ icon = " ", key = "r", desc = "最近打开历史文件", action = ":lua Snacks.dashboard.pick('oldfiles')" },
+					{
+						icon = " ",
+						key = "g",
+						desc = "全局搜索字符串",
+						action = ":lua Snacks.dashboard.pick('live_grep')",
+					},
+					{
+						icon = " ",
+						key = "r",
+						desc = "最近打开历史文件",
+						action = ":lua Snacks.dashboard.pick('oldfiles')",
+					},
 					{
 						icon = " ",
 						key = "c",

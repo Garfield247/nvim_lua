@@ -1,6 +1,11 @@
 {
     "diagnostics.disable": [
         "unused-local",
-        "deprecated"
+        "deprecated",
+        "undefined-doc-name"
+    ],
+    "diagnostics.globals": [
+        "vim",
+        "Snacks"
     ]
 }
