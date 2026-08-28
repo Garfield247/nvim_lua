@@ -137,6 +137,20 @@ return {
 				buf_map(bufnr, "n", "<leader>rn", vim.lsp.buf.rename, "重命名符号")
 				buf_map(bufnr, "n", "<leader>D", diagnostics, "显示缓冲区诊断")
 				buf_map(bufnr, "n", "<leader>d", vim.diagnostic.open_float, "显示行诊断")
+				buf_map(bufnr, "n", "<leader>yd", function()
+					local line_diags = vim.diagnostic.get(bufnr, { lnum = vim.api.nvim_win_get_cursor(0)[1] - 1 })
+					if #line_diags == 0 then
+						vim.notify("当前行无诊断信息", vim.log.levels.WARN, { title = "LSP 诊断" })
+						return
+					end
+					local msgs = {}
+					for _, d in ipairs(line_diags) do
+						table.insert(msgs, string.format("[%s] %s", d.source or "LSP", d.message))
+					end
+					local text = table.concat(msgs, "\n")
+					vim.fn.setreg("+", text)
+					vim.notify("已复制当前行诊断信息到系统剪贴板:\n" .. text, vim.log.levels.INFO, { title = "LSP 诊断" })
+				end, "一键复制当前行诊断信息")
 				buf_map(bufnr, "n", "[d", function()
 					vim.diagnostic.jump({ count = -1, float = true })
 				end, "上一条诊断")
