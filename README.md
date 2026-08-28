@@ -1,149 +1,64 @@
-# nvim_lua/
+# Garfield's Neovim Configuration (Neovim 0.12+)
 
-<a href="https://dotfyle.com/Garfield247/nvimlua"><img src="https://dotfyle.com/Garfield247/nvimlua/badges/plugins?style=flat" /></a>
-<a href="https://dotfyle.com/Garfield247/nvimlua"><img src="https://dotfyle.com/Garfield247/nvimlua/badges/leaderkey?style=flat" /></a>
-<a href="https://dotfyle.com/Garfield247/nvimlua"><img src="https://dotfyle.com/Garfield247/nvimlua/badges/plugin-manager?style=flat" /></a>
+<p align="center">
+  <a href="https://dotfyle.com/Garfield247/nvimlua"><img src="https://dotfyle.com/Garfield247/nvimlua/badges/plugins?style=flat" /></a>
+  <a href="https://dotfyle.com/Garfield247/nvimlua"><img src="https://dotfyle.com/Garfield247/nvimlua/badges/leaderkey?style=flat" /></a>
+  <a href="https://dotfyle.com/Garfield247/nvimlua"><img src="https://dotfyle.com/Garfield247/nvimlua/badges/plugin-manager?style=flat" /></a>
+</p>
 
+基于 **Neovim 0.12+** 构建的高性能、现代化全栈开发配置。全面拥抱 Native LSP、基于 Rust 构建的超极速补全引擎 `blink.cmp`，并整合了 `fzf-lua`、`snacks.nvim` 等下一代核心插件。
 
-## Install Instructions
+---
 
- > Install requires Neovim 0.9+. Always review the code before installing a configuration.
+## 🛠️ 架构与核心插件 Stack
 
-Clone the repository and install the plugins:
+- **语言服务 (Native LSP)**: 采用 Neovim 0.12 原生 `vim.lsp.config` & `vim.lsp.enable` 架构管理语言服务器。
+- **自动补全 (Completion)**: `saghen/blink.cmp` - 超高性能 Rust 引擎，支持 Nerd Font v3 美化图标与三栏右对齐渲染。
+- **模糊查找 (Picker)**: `ibhagwan/fzf-lua` - 极速文件、字符串及符号检索。
+- **UI 基础设施 (UI Framework)**: `folke/snacks.nvim` - 整合 Dashboard 仪表盘、Notification 通知系统及大文件保护。
+- **快速跳转 (Navigation)**: `folke/flash.nvim` - 极速代码块与光标定位。
+- **格式化与校验 (Formatting & Lint)**: `stevearc/conform.nvim` 与 `mfussenegger/nvim-lint` 组合。
+- **状态栏 (Statusline)**: `nvim-lualine/lualine.nvim` 自定义极简主题。
 
-```sh
-git clone git@github.com:Garfield247/nvim_lua ~/.config/Garfield247/nvim_lua
+---
+
+## 🐍 语言生态增强 (Language Ecosystem)
+
+### Python 工具链深度集成
+- **虚拟环境动态感知**: 自动探测 `uv` (`.venv`)、`pyenv` 及系统环境，自动绑定 LSP 解释器路径。
+- **自动 Organize Imports**: 格式化时由 `ruff` 自动进行 `import` 语句排序与对齐。
+- **状态栏环境显示**: 在 `lualine` 中实时高亮当前 Python 版本及激活的虚拟环境名称。
+
+### Go & Web 工具链
+- 整合 `gopls` / `golangci-lint` / `goimports` / `prettier` / `stylua` 等高效工具链。
+
+---
+
+## ⌨️ 常用快捷键速查 (Keymaps)
+
+| 快捷键 | 功能描述 |
+| :--- | :--- |
+| **`<leader>ff`** | 模糊查找当前目录文件 (fzf-lua) |
+| **`<leader>fs`** | 全局搜索字符串 (live_grep) |
+| **`<leader>fb`** | 缓冲区列表切换 |
+| **`<leader>fr`** | 最近打开的历史文件 |
+| **`gd`** | 跳转到定义 (Definition) |
+| **`gR`** | 查找所有引用 (References) |
+| **`<leader>ca`** | 代码操作 (Code Action) |
+| **`<leader>rn`** | 重命名变量/符号 (Rename) |
+| **`<leader>mp`** | 格式化当前文件 / 选中区域 |
+| **`<leader>d`** | 显示当前行 LSP 诊断 |
+| **`<leader>yd`** | 一键复制当前行诊断报错至剪贴板 |
+| **`s`** | Flash 极速光标跳转 |
+
+---
+
+## 📦 安装说明 (Installation)
+
+```bash
+# 1. 克隆配置文件仓库
+git clone git@github.com:Garfield247/nvim_lua.git ~/.config/nvim
+
+# 2. 启动 Neovim（自动安装与同步 Lazy 插件）
+nvim
 ```
-
-Open Neovim with this config:
-
-```sh
-NVIM_APPNAME=Garfield247/nvim_lua/ nvim
-```
-
-## Plugins
-
-### ai
-
-+ [Exafunction/codeium.nvim](https://dotfyle.com/plugins/Exafunction/codeium.nvim)
-### color
-
-+ [NvChad/nvim-colorizer.lua](https://dotfyle.com/plugins/NvChad/nvim-colorizer.lua)
-### colorscheme
-
-+ [folke/tokyonight.nvim](https://dotfyle.com/plugins/folke/tokyonight.nvim)
-+ [catppuccin/nvim](https://dotfyle.com/plugins/catppuccin/nvim)
-### command-line
-
-+ [gelguy/wilder.nvim](https://dotfyle.com/plugins/gelguy/wilder.nvim)
-### comment
-
-+ [JoosepAlviste/nvim-ts-context-commentstring](https://dotfyle.com/plugins/JoosepAlviste/nvim-ts-context-commentstring)
-+ [numToStr/Comment.nvim](https://dotfyle.com/plugins/numToStr/Comment.nvim)
-+ [danymat/neogen](https://dotfyle.com/plugins/danymat/neogen)
-+ [folke/todo-comments.nvim](https://dotfyle.com/plugins/folke/todo-comments.nvim)
-### completion
-
-+ [saghen/blink.cmp](https://dotfyle.com/plugins/saghen/blink.cmp)
-### cursorline
-
-+ [yamatsum/nvim-cursorline](https://dotfyle.com/plugins/yamatsum/nvim-cursorline)
-### debugging
-
-+ [mfussenegger/nvim-dap](https://dotfyle.com/plugins/mfussenegger/nvim-dap)
-+ [theHamsta/nvim-dap-virtual-text](https://dotfyle.com/plugins/theHamsta/nvim-dap-virtual-text)
-+ [rcarriga/nvim-dap-ui](https://dotfyle.com/plugins/rcarriga/nvim-dap-ui)
-+ [chrisgrieser/nvim-chainsaw](https://dotfyle.com/plugins/chrisgrieser/nvim-chainsaw)
-### editing-support
-
-+ [windwp/nvim-autopairs](https://dotfyle.com/plugins/windwp/nvim-autopairs)
-+ [johmsalas/text-case.nvim](https://dotfyle.com/plugins/johmsalas/text-case.nvim)
-+ [windwp/nvim-ts-autotag](https://dotfyle.com/plugins/windwp/nvim-ts-autotag)
-+ [nat-418/boole.nvim](https://dotfyle.com/plugins/nat-418/boole.nvim)
-### file-explorer
-
-+ [kelly-lin/ranger.nvim](https://dotfyle.com/plugins/kelly-lin/ranger.nvim)
-+ [nvim-tree/nvim-tree.lua](https://dotfyle.com/plugins/nvim-tree/nvim-tree.lua)
-### formatting
-
-+ [stevearc/conform.nvim](https://dotfyle.com/plugins/stevearc/conform.nvim)
-### fuzzy-finder
-
-+ [nvim-telescope/telescope.nvim](https://dotfyle.com/plugins/nvim-telescope/telescope.nvim)
-### git
-
-+ [f-person/git-blame.nvim](https://dotfyle.com/plugins/f-person/git-blame.nvim)
-+ [kdheepak/lazygit.nvim](https://dotfyle.com/plugins/kdheepak/lazygit.nvim)
-+ [sindrets/diffview.nvim](https://dotfyle.com/plugins/sindrets/diffview.nvim)
-+ [lewis6991/gitsigns.nvim](https://dotfyle.com/plugins/lewis6991/gitsigns.nvim)
-### golang
-
-+ [crusj/structrue-go.nvim](https://dotfyle.com/plugins/crusj/structrue-go.nvim)
-+ [ray-x/go.nvim](https://dotfyle.com/plugins/ray-x/go.nvim)
-+ [olexsmir/gopher.nvim](https://dotfyle.com/plugins/olexsmir/gopher.nvim)
-### icon
-
-+ [nvim-tree/nvim-web-devicons](https://dotfyle.com/plugins/nvim-tree/nvim-web-devicons)
-+ [ziontee113/icon-picker.nvim](https://dotfyle.com/plugins/ziontee113/icon-picker.nvim)
-### keybinding
-
-+ [folke/which-key.nvim](https://dotfyle.com/plugins/folke/which-key.nvim)
-### lsp
-
-+ [roobert/action-hints.nvim](https://dotfyle.com/plugins/roobert/action-hints.nvim)
-+ [neovim/nvim-lspconfig](https://dotfyle.com/plugins/neovim/nvim-lspconfig)
-+ [hedyhli/outline.nvim](https://dotfyle.com/plugins/hedyhli/outline.nvim)
-### marks
-
-+ [ThePrimeagen/harpoon](https://dotfyle.com/plugins/ThePrimeagen/harpoon)
-### nvim-dev
-
-+ [nvim-lua/plenary.nvim](https://dotfyle.com/plugins/nvim-lua/plenary.nvim)
-+ [folke/neodev.nvim](https://dotfyle.com/plugins/folke/neodev.nvim)
-+ [ray-x/guihua.lua](https://dotfyle.com/plugins/ray-x/guihua.lua)
-+ [MunifTanjim/nui.nvim](https://dotfyle.com/plugins/MunifTanjim/nui.nvim)
-### plugin-manager
-
-+ [folke/lazy.nvim](https://dotfyle.com/plugins/folke/lazy.nvim)
-### session
-
-+ [rmagatti/auto-session](https://dotfyle.com/plugins/rmagatti/auto-session)
-### snippet
-
-+ [rafamadriz/friendly-snippets](https://dotfyle.com/plugins/rafamadriz/friendly-snippets)
-### startup
-
-+ [nvimdev/dashboard-nvim](https://dotfyle.com/plugins/nvimdev/dashboard-nvim)
-+ [goolord/alpha-nvim](https://dotfyle.com/plugins/goolord/alpha-nvim)
-### statusline
-
-+ [nvim-lualine/lualine.nvim](https://dotfyle.com/plugins/nvim-lualine/lualine.nvim)
-### syntax
-
-+ [kylechui/nvim-surround](https://dotfyle.com/plugins/kylechui/nvim-surround)
-+ [nvim-treesitter/nvim-treesitter](https://dotfyle.com/plugins/nvim-treesitter/nvim-treesitter)
-+ [nvim-treesitter/nvim-treesitter-textobjects](https://dotfyle.com/plugins/nvim-treesitter/nvim-treesitter-textobjects)
-### tabline
-
-+ [romgrk/barbar.nvim](https://dotfyle.com/plugins/romgrk/barbar.nvim)
-### utility
-
-+ [rcarriga/nvim-notify](https://dotfyle.com/plugins/rcarriga/nvim-notify)
-+ [folke/noice.nvim](https://dotfyle.com/plugins/folke/noice.nvim)
-+ [stevearc/dressing.nvim](https://dotfyle.com/plugins/stevearc/dressing.nvim)
-## Language Servers
-
-+ cssls
-+ emmet_ls
-+ gopls
-+ graphql
-+ html
-+ lua_ls
-+ prismals
-+ pyright
-+ rust_analyzer
-+ svelte
-+ tailwindcss
-
-
- This readme was generated by [Dotfyle](https://dotfyle.com)
